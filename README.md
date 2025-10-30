@@ -1,6 +1,16 @@
 # Bookworm
 
+## Tech Stack
+- NextJS
+- better-auth with Google OAuth
+- node-postgres
+- node-pg-migrate
+
 ## Local Development
+Install dependencies:
+```bash
+pnpm install
+```
 
 Start the development server:
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import BookwormLogo from "@/app/ui/bookworm-logo";
+import SigninButton from "@/app/ui/signin-button";
 
 export default function Page() {
   return (
@@ -21,12 +21,7 @@ export default function Page() {
           <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal antialiased`}>
             Welcome to <strong>Bookworm</strong>, the digital bookshelf for your reading journey.
           </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base"
-          >
-            Log in
-          </Link>
+          <SigninButton />
         </div>
       </div>
     </main>
