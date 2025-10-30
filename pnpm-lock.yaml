@@ -20,6 +20,9 @@ importers:
       next:
         specifier: 16.0.0
         version: 16.0.0(@babel/core@7.28.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      node-pg-migrate:
+        specifier: ^8.0.3
+        version: 8.0.3(@types/pg@8.15.6)(pg@8.16.3)
       pg:
         specifier: ^8.16.3
         version: 8.16.3
@@ -60,9 +63,6 @@ importers:
       eslint-config-next:
         specifier: 16.0.0
         version: 16.0.0(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)
-      node-pg-migrate:
-        specifier: ^8.0.3
-        version: 8.0.3(@types/pg@8.15.6)(pg@8.16.3)
       tailwindcss:
         specifier: ^4
         version: 4.1.15

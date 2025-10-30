@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 const links = [
-  { name: 'Home', href: '/books', icon: HomeIcon },
+  { name: 'Home', href: '/home', icon: HomeIcon },
 ];
 
 export default function NavLinks() {
