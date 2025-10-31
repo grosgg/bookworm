@@ -3,6 +3,8 @@ import { BookshelfType } from '@/app/lib/definitions';
 import { getBookshelvesByUserId } from '@/app/lib/data';
 import { auth } from '@/app/lib/auth';
 import { headers } from 'next/headers';
+import { PlusIcon } from '@heroicons/react/24/outline';
+import BookshelfCard from '@/app/ui/books/bookshelf-card';
 
 export default async function BookshelvesPage() {
   const session = await auth.api.getSession({
@@ -12,15 +14,21 @@ export default async function BookshelvesPage() {
 
   const userId = session.user.id;
   const bookshelves: BookshelfType[] = await getBookshelvesByUserId(userId);
-  // const bookshelves: BookshelfType[] = [];
+
   return (
     <div>
-      <h1 className="text-3xl font-bold">Bookshelves</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-3xl font-bold">Bookshelves</h1>
+        <a
+          href="/bookshelves/create"
+          className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"
+        >
+          New Bookshelf <PlusIcon className="w-6" />
+        </a>
+      </div>
       <div className="flex flex-col gap-4">
         {bookshelves.map((bookshelf) => (
-          <div key={bookshelf.id}>
-            <h2 className="text-2xl font-bold">{bookshelf.name}</h2>
-          </div>
+          <BookshelfCard key={bookshelf.id} bookshelf={bookshelf} />
         ))}
       </div>
 

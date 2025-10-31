@@ -31,6 +31,16 @@ export async function createDefaultBook(userId: string) {
   }
 }
 
+export async function getBookshelfById(id: string) {
+  try {
+    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE id = $1', [id]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch bookshelf data.');
+  }
+}
+
 export async function getBookshelvesByUserId(userId: string) {
   try {
     const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1', [userId]);
