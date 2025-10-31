@@ -1,32 +1,38 @@
-export type UserType = {
-  id: string;
-  name: string;
-  email: string;
-  emailVerified: boolean;
-  image: string;
-  createdAt: string;
-  updatedAt: string;
-};
+import { z } from "zod";
 
-export type BookshelfType = {
-  id: string;
-  userId: string;
-  name: string;
-  visibility: 'public' | 'private';
-  createdAt: string;
-  updatedAt: string;
-};
+export const UserSchema = z.object({
+  id: z.uuid(),
+  name: z.string(),
+  email: z.string(),
+  emailVerified: z.boolean(),
+  image: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+export type UserType = z.infer<typeof UserSchema>;
 
-export type BookType = {
-  id: string;
-  userId: string;
-  bookshelfId: string;
-  title: string;
-  author: string;
-  isbn: string;
-  status: 'reading' | 'read' | 'not_read';
-  coverUrl: string;
-  notes: string;
-  createdAt: string;
-  updatedAt: string;
-};
+export const BookshelfSchema = z.object({
+  id: z.uuid(),
+  userId: z.uuid(),
+  name: z.string().min(1),
+  visibility: z.enum(['public', 'private']),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+export type BookshelfType = z.infer<typeof BookshelfSchema>;
+
+export const BookSchema = z.object({
+  id: z.uuid(),
+  userId: z.uuid(),
+  bookshelfId: z.uuid().optional(),
+  title: z.string().min(1),
+  author: z.string().min(1),
+  isbn: z.string().optional(),
+  status: z.enum(['reading', 'read', 'not_read']),
+  coverUrl: z.url().optional(),
+  notes: z.string().optional(),
+  pages: z.number().optional(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+export type BookType = z.infer<typeof BookSchema>;

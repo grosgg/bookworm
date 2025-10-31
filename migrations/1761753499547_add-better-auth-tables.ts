@@ -1,15 +1,7 @@
 import { MigrationBuilder } from 'node-pg-migrate';
 
-/**
- * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
- */
 export const shorthands: undefined = undefined;
 
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
 export const up = (pgm: MigrationBuilder): void => {
   pgm.createTable('user', {
     id: { type: 'uuid', primaryKey: true },
@@ -54,11 +46,6 @@ export const up = (pgm: MigrationBuilder): void => {
   });
 };
 
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
 export const down = (pgm: MigrationBuilder): void => {
   pgm.dropTable('verification');
   pgm.dropTable('account');

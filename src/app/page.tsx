@@ -5,7 +5,7 @@ import SigninButton from "@/app/ui/signin-button";
 export default function Page() {
   return (
     <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-yellow-200 p-4 md:h-20">
+      <div className="flex h-18 shrink-0 items-end rounded-lg bg-yellow-200 p-4 md:h-18">
         <BookwormLogo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
