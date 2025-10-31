@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { getBooksByBookshelfId } from '@/app/lib/data';
-import { BookshelfType } from '@/app/lib/definitions';
+import { BookType } from '@/app/lib/definitions';
 
 export default async function Bookshelf({ bookshelfId }: { bookshelfId: string }) {
-  const books = await getBooksByBookshelfId(bookshelfId);
+  const books: BookType[] = await getBooksByBookshelfId(bookshelfId);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
       {books.map((book) => (

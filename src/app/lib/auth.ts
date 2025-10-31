@@ -5,14 +5,16 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL!,
+  connectionString: process.env.DATABASE_URL!,
   ssl: { rejectUnauthorized: false },
 });
 
 export const auth = betterAuth({
   database: pool,
   advanced: {
-    generateId: () => uuidv4(),
+    database: {
+      generateId: () => uuidv4(),
+    },
   },
   socialProviders: {
     google: {
