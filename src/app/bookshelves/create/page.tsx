@@ -1,4 +1,5 @@
 import { createBookshelfAction } from '@/app/lib/actions';
+import Link from 'next/link';
 
 export default function CreateBookshelfPage() {
   return (
@@ -32,12 +33,15 @@ export default function CreateBookshelfPage() {
             <option value="private">Private</option>
           </select>
         </div>
-        <button
-          type="submit"
-          className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base"
-        >
-          Create
-        </button>
+        <div className="flex gap-4 items-center">
+          <button
+            type="submit"
+            className="flex items-center gap-5 rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base"
+          >
+            Create
+          </button>
+          <Link href="/bookshelves" className="text-sm text-gray-500">Cancel</Link>
+        </div>
       </form>
     </div>
   );

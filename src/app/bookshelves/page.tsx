@@ -5,6 +5,7 @@ import { auth } from '@/app/lib/auth';
 import { headers } from 'next/headers';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import BookshelfCard from '@/app/ui/books/bookshelf-card';
+import Link from 'next/link';
 
 export default async function BookshelvesPage() {
   const session = await auth.api.getSession({
@@ -19,14 +20,14 @@ export default async function BookshelvesPage() {
     <div>
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-3xl font-bold">Bookshelves</h1>
-        <a
+        <Link
           href="/bookshelves/create"
           className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"
         >
           New Bookshelf <PlusIcon className="w-6" />
-        </a>
+        </Link>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {bookshelves.map((bookshelf) => (
           <BookshelfCard key={bookshelf.id} bookshelf={bookshelf} />
         ))}

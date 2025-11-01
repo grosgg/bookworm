@@ -43,7 +43,7 @@ export async function getBookshelfById(id: string) {
 
 export async function getBookshelvesByUserId(userId: string) {
   try {
-    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1', [userId]);
+    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1 ORDER BY "updatedAt" DESC', [userId]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
