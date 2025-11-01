@@ -1,10 +1,16 @@
 'use client';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import BarcodeScanner from '@/app/ui/books/barcode-scanner';
+import ScannerButton from '@/app/ui/books/scanner-button';
 
 export default function BookSearchForm() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const [scannerButtonDisplay, setScannerButtonDisplay] = useState<boolean>(false);
+  const [scannerDisplay, setScannerDisplay] = useState<boolean>(false);
+  const [barcode, setBarcode] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +43,10 @@ export default function BookSearchForm() {
               name="searchType"
               value="intitle"
               defaultChecked={searchParams.get('searchType') !== 'isbn'}
+              onChange={() => {
+                setScannerButtonDisplay(false);
+                setScannerDisplay(false);
+              }}
               className="accent-yellow-300"
             />
             Title
@@ -47,10 +57,12 @@ export default function BookSearchForm() {
               name="searchType"
               value="isbn"
               defaultChecked={searchParams.get('searchType') === 'isbn'}
+              onChange={() => setScannerButtonDisplay(true)}
               className="accent-yellow-300"
             />
             ISBN
           </label>
+          {scannerButtonDisplay && <ScannerButton scannerDisplay={scannerDisplay} setScannerDisplay={setScannerDisplay} />}
         </legend>
       </fieldset>
       {/* Language radio buttons */}
@@ -101,8 +113,9 @@ export default function BookSearchForm() {
           const target = e.target as HTMLInputElement;
           target.value = target.value.trim();
         }}
-        defaultValue={searchParams.get('query') || ''}
+        defaultValue={searchParams.get('query') || barcode || ''}
       />
+      {scannerDisplay && <BarcodeScanner setBarcode={setBarcode} />}
       <button
         type="submit"
         className="mt-2 bg-yellow-200 hover:bg-yellow-100 text-black rounded px-4 py-2 font-medium cursor-pointer"
