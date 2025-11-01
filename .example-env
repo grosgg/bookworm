@@ -1,8 +1,8 @@
-DATABASE_URL=
+DATABASE_URL=postgres://bookworm:bookworm@db:5432/bookworm?sslmode=disable
 
 # better-auth
 BETTER_AUTH_SECRET=
-BETTER_AUTH_URL=
+BETTER_AUTH_URL=http://localhost:3000
 
 # Google 
 GOOGLE_CLIENT_ID=

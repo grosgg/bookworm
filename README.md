@@ -8,15 +8,14 @@
 - zod
 
 ## Local Development
-Install dependencies:
+1. Make sure Docker or OrbStack is installed.
+2. Copy `.example-env` to `.env`. Set a secret for better-auth. Enter your Google client ID and secret.
+3. Start the development server:
 ```bash
-pnpm install
+docker compose up -d --build
 ```
-
-Start the development server:
-
+4. Run DB migrations:
 ```bash
-pnpm dev
+docker compose exec app pnpm run migrate up
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. App is accessible at [http://localhost:3000](http://localhost:3000).
