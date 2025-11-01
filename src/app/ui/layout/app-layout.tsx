@@ -1,5 +1,5 @@
 import { requireAuth } from '@/app/lib/auth';
-import SideNav from '@/app/ui/books/sidenav';
+import SideNav from '@/app/ui/layout/sidenav';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   await requireAuth();

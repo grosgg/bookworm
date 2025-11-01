@@ -1,6 +1,6 @@
-import NavLinks from '@/app/ui/books/nav-links';
-import BookwormLogo from '@/app/ui/bookworm-logo';
-import SignoutButton from '@/app/ui/signout-button';
+import NavLinks from '@/app/ui/layout/nav-links';
+import BookwormLogo from '@/app/ui/layout/bookworm-logo';
+import SignoutButton from '@/app/ui/auth/signout-button';
 
 export default function SideNav() {
   return (

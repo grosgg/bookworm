@@ -1,6 +1,6 @@
 import Image from "next/image";
-import BookwormLogo from "@/app/ui/bookworm-logo";
-import SigninButton from "@/app/ui/signin-button";
+import BookwormLogo from "@/app/ui/layout/bookworm-logo";
+import SigninButton from "@/app/ui/auth/signin-button";
 
 export default function Page() {
   return (

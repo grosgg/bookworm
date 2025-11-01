@@ -4,9 +4,9 @@ import { getBookshelvesByUserId } from '@/app/lib/data';
 import { auth } from '@/app/lib/auth';
 import { headers } from 'next/headers';
 import { FolderPlusIcon } from '@heroicons/react/24/outline';
-import BookshelfCard from '@/app/ui/books/bookshelf-card';
+import BookshelfCard from '@/app/ui/bookshelf/bookshelf-card';
 import Link from 'next/link';
-import DefaultBookshelfCard from '../ui/books/default-bookshelf-card';
+import DefaultBookshelfCard from '@/app/ui/bookshelf/default-bookshelf-card';
 
 export default async function BookshelvesPage() {
   const session = await auth.api.getSession({

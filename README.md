@@ -5,6 +5,7 @@
 - better-auth with Google OAuth
 - node-postgres
 - node-pg-migrate
+- zod
 
 ## Local Development
 Install dependencies:
