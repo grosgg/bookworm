@@ -22,7 +22,7 @@ export default async function DefaultBookshelfPage() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+          <BookCard key={book.id} book={book} onSearch={false} />
         ))}
       </div>
     </div>

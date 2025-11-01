@@ -12,7 +12,7 @@ export default function SigninButton() {
     return (
       <Link
         href="/home"
-        className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base"
+        className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base cursor-pointer"
       >
         Go to Dashboard
         <ArrowRightIcon className="w-6" />
@@ -39,7 +39,7 @@ export default function SigninButton() {
           },
         );
       }}
-      className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base"
+      className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base cursor-pointer"
     >
       Sign In With Google
       <KeyIcon className="w-6" />

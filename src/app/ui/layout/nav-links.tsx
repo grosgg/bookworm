@@ -3,6 +3,7 @@
 import {
   HomeIcon,
   FolderIcon,
+  PlusIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,6 +12,7 @@ import clsx from 'clsx';
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
   { name: 'Bookshelves', href: '/bookshelves', icon: FolderIcon },
+  { name: 'Add Book', href: '/books/add', icon: PlusIcon },
 ];
 
 export default function NavLinks() {

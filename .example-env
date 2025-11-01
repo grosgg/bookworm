@@ -1,3 +1,5 @@
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
 DATABASE_URL=postgres://bookworm:bookworm@db:5432/bookworm?sslmode=disable
 
 # better-auth

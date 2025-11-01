@@ -56,3 +56,37 @@ export async function editBookshelfAction(id: string, formData: FormData) {
   revalidatePath('/bookshelves');
   redirect('/bookshelves');
 }
+
+export async function addBookToCollectionAction(formData: FormData) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    throw new Error('Unauthorized');
+  }
+
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL!,
+    ssl: { rejectUnauthorized: false },
+  });
+
+  await pool.query(
+    'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+    [
+      uuidv4(),
+      session.user.id,
+      formData.get('bookshelfId'),
+      formData.get('title'),
+      formData.get('author'),
+      formData.get('isbn'),
+      formData.get('coverUrl'),
+      formData.get('pages'),
+      formData.get('year'),
+      formData.get('publisher'),
+      formData.get('language')
+    ]
+  );
+
+  revalidatePath('/bookshelves');
+  redirect('/bookshelves');
+}
