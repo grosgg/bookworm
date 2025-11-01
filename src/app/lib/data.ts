@@ -81,6 +81,16 @@ export async function getBooksByUserId(userId: string) {
   }
 }
 
+export async function getBookById(id: string) {
+  try {
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE id = $1', [id]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch book data.');
+  }
+}
+
 export async function searchBooks(searchType: 'intitle' | 'isbn', query: string, lang: 'en' | 'fr' | 'ja') {
   try {
     const params = new URLSearchParams({
