@@ -60,3 +60,13 @@ export async function getBooksByBookshelfId(bookshelfId: string) {
     throw new Error('Failed to fetch books data.');
   }
 }
+
+export async function getBooksFromDefaultBookshelf(userId: string) {
+  try {
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "bookshelfId" IS NULL AND "userId" = $1', [userId]);
+    return result.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch books data.');
+  }
+}
