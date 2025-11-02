@@ -93,6 +93,14 @@
       "read": "Read",
       "notRead": "Not Read"
     },
+    "mediaPill": {
+      "physical": "Physical",
+      "digital": "Digital"
+    },
+    "visibilityPill": {
+      "private": "Private",
+      "public": "Public"
+    },
     "searchResults": {
       "noBooksFound": "No books found"
     },

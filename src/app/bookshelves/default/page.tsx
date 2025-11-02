@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
 import { getTranslations } from 'next-intl/server';
+import VisibilityPill from "@/app/ui/books/visibility-pill";
 
 export default async function DefaultBookshelfPage() {
   const t = await getTranslations('pages.defaultBookshelf');
@@ -20,7 +21,7 @@ export default async function DefaultBookshelfPage() {
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-3xl font-bold">{t('title')}</h1>
-        <p className="text-sm text-gray-500">{t('private')}</p>
+        <VisibilityPill visibility="private" />
         <p className="text-md font-medium">{tBookshelves('bookCount', { count: books.length })}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

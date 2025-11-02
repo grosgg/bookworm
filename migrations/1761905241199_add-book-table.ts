@@ -15,6 +15,7 @@ export const up = (pgm: MigrationBuilder): void => {
     year: { type: 'integer', notNull: false },
     publisher: { type: 'varchar(255)', notNull: false },
     language: { type: 'varchar(255)', notNull: false },
+    media: { type: 'varchar(255)', notNull: true, default: 'physical' },
     status: { type: 'varchar(255)', notNull: true, default: 'not_read' },
     notes: { type: 'text', notNull: false },
     createdAt: { type: 'timestamp with time zone', notNull: true, default: pgm.func('now()') },

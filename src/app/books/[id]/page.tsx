@@ -1,5 +1,6 @@
 import { getBookById } from "@/app/lib/data";
 import { BookType } from "@/app/lib/definitions";
+import MediaPill from "@/app/ui/books/media-pill";
 import StatusPill from "@/app/ui/books/status-pill";
 import { getTranslations } from 'next-intl/server';
 
@@ -9,8 +10,8 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
   const book: BookType = await getBookById(params.id);
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex items-start gap-20">
-        <div className="flex-1 md:flex-none">
+      <div className="flex items-start gap-20 lg:w-2/3">
+        <div className="flex-1">
           <h1 className="text-3xl font-bold">{book.title}</h1>
           <p className="text-lg font-medium">{book.author}</p>
           <p className="text-sm text-gray-500">{book.year}</p>
@@ -22,7 +23,10 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
             <p className="text-sm text-gray-500">{t('isbn')} {book.isbn}</p>
           )}
           <p className="text-sm text-gray-500">{book.language}</p>
-          <StatusPill status={book.status} />
+          <div className="flex items-center gap-2">
+            <MediaPill media={book.media} />
+            <StatusPill status={book.status} />
+          </div>
         </div>
         <div>
           {book.coverUrl && (

@@ -33,6 +33,7 @@ export const BookSchema = z.object({
   publisher: z.string().optional(),
   language: z.string().optional(),
   coverUrl: z.url().optional(),
+  media: z.enum(['physical', 'digital']),
   status: z.enum(['reading', 'read', 'not_read']),
   notes: z.string().optional(),
   createdAt: z.string(),

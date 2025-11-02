@@ -2,6 +2,8 @@ import { BookType } from "@/app/lib/definitions";
 import AddToCollectionButton from "./add-to-collection-button";
 import Link from "next/link";
 import { getTranslations } from 'next-intl/server';
+import MediaPill from "./media-pill";
+import StatusPill from "./status-pill";
 
 export default async function BookCard({ book, onSearch }: { book: BookType, onSearch: boolean }) {
   const t = await getTranslations('pages.bookDetail');
@@ -26,6 +28,12 @@ export default async function BookCard({ book, onSearch }: { book: BookType, onS
           <p className="text-sm text-gray-500">{t('isbn')} {book.isbn}</p>
         )}
         <p className="text-sm text-gray-500">{book.language}</p>
+        {!onSearch && (
+          <div className="flex items-center gap-2">
+            <MediaPill media={book.media} />
+            <StatusPill status={book.status} />
+          </div>
+        )}
         {onSearch && (
           <AddToCollectionButton book={book} />
         )}

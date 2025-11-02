@@ -93,6 +93,14 @@
       "read": "Lu",
       "notRead": "Non lu"
     },
+    "mediaPill": {
+      "physical": "Physique",
+      "digital": "Numérique"
+    },
+    "visibilityPill": {
+      "private": "Privé",
+      "public": "Public"
+    },
     "searchResults": {
       "noBooksFound": "Aucun livre trouvé"
     },

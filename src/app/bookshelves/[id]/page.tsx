@@ -1,6 +1,7 @@
 import { getBooksByBookshelfId, getBookshelfById } from "@/app/lib/data";
 import { BookshelfType, BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
+import VisibilityPill from "@/app/ui/books/visibility-pill";
 import { getTranslations } from 'next-intl/server';
 
 export default async function BookshelfPage(props: { params: Promise<{ id: string }> }) {
@@ -15,7 +16,7 @@ export default async function BookshelfPage(props: { params: Promise<{ id: strin
     <div className="flex flex-col gap-4">
       <div>
         <h1 className="text-3xl font-bold">{bookshelf.name}</h1>
-        <p className="text-sm text-gray-500">{bookshelf.visibility}</p>
+        <VisibilityPill visibility={bookshelf.visibility} />
         <p className="text-md font-medium">{t('bookCount', { count: books.length })}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
