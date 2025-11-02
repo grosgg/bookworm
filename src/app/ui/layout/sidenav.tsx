@@ -4,7 +4,7 @@ import SignoutButton from '@/app/ui/auth/signout-button';
 
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+    <div className="flex h-full flex-col">
       <div
         className="mb-2 flex h-18 items-end justify-start rounded-md bg-yellow-200 p-4 md:h-40"
       >

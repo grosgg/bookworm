@@ -5,12 +5,16 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   await requireAuth();
 
   return (
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      <div className="w-full flex-none md:w-80">
-        <SideNav />
+    <main className="flex flex-col gap-4 p-4 h-screen">
+      <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden">
+        <div className="w-full flex-none md:w-80">
+          <SideNav />
+        </div>
+        <div className="flex-grow p-6 md:overflow-y-auto">
+          {children}
+        </div>
       </div>
-      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
-    </div>
+    </main>
   );
 }
 

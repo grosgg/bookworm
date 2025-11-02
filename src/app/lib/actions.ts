@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { v4 as uuidv4 } from 'uuid';
 import { Pool } from 'pg';
 import { auth } from './auth';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { BookshelfSchema } from './definitions';
 
@@ -89,4 +89,9 @@ export async function addBookToCollectionAction(formData: FormData) {
 
   revalidatePath('/bookshelves');
   redirect('/bookshelves');
+}
+
+export async function setLocaleAction(locale: string) {
+  const store = await cookies();
+  store.set('locale', locale);
 }

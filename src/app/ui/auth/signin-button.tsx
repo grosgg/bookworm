@@ -3,10 +3,12 @@ import { useState } from "react";
 import { signIn, useSession } from "@/app/lib/auth-client";
 import Link from "next/link";
 import { ArrowRightIcon, KeyIcon } from "@heroicons/react/24/outline";
+import { useTranslations } from "next-intl";
 
 export default function SigninButton() {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
+  const t = useTranslations('ui.signinButton');
 
   if (session) {
     return (
@@ -14,7 +16,7 @@ export default function SigninButton() {
         href="/home"
         className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base cursor-pointer"
       >
-        Go to Dashboard
+        {t('goToDashboard')}
         <ArrowRightIcon className="w-6" />
       </Link>
     );
@@ -41,7 +43,7 @@ export default function SigninButton() {
       }}
       className="flex items-center gap-5 self-start rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base cursor-pointer"
     >
-      Sign In With Google
+      {t('signIn')}
       <KeyIcon className="w-6" />
     </button>
   );

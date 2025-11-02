@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from "next/font/google";
 import '@/app/ui/globals.css';
 
@@ -17,17 +18,17 @@ export const metadata: Metadata = {
   description: "Digital Bookshelf",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

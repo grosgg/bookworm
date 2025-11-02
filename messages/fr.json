@@ -1,0 +1,16 @@
+{
+  "pages": {
+    "front": {
+      "hero": "Bienvenue sur Bookworm, votre bibliothèque numérique."
+    },
+    "settings": {
+      "title": "Paramètres"
+    }
+  },
+  "ui": {
+    "signinButton": {
+      "signIn": "Se connecter avec Google",
+      "goToDashboard": "Accéder au dashboard"
+    }
+  }
+}

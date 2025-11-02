@@ -5,6 +5,7 @@ import {
   FolderIcon,
   PlusIcon,
   BookOpenIcon,
+  Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -15,6 +16,7 @@ const links = [
   { name: 'Add Book', href: '/books/add', icon: PlusIcon },
   { name: 'Bookshelves', href: '/bookshelves', icon: FolderIcon },
   { name: 'All Books', href: '/books', icon: BookOpenIcon },
+  { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
 ];
 
 export default function NavLinks() {
