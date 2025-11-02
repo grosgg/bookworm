@@ -13,7 +13,7 @@
       "title": "Add Book"
     },
     "bookDetail": {
-      "personalNotes": "Personal Notes",
+      "personalNotes": "Notes",
       "noNotesYet": "No notes yet",
       "pages": "pages",
       "isbn": "ISBN:"

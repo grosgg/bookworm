@@ -13,25 +13,25 @@
       "title": "Ajouter un livre"
     },
     "bookDetail": {
-      "personalNotes": "Notes personnelles",
+      "personalNotes": "Notes",
       "noNotesYet": "Aucune note pour le moment",
       "pages": "pages",
       "isbn": "ISBN :"
     },
     "bookshelves": {
-      "title": "Bibliothèques",
-      "newBookshelf": "Nouvelle bibliothèque",
+      "title": "Étagères",
+      "newBookshelf": "Nouvelle étagère",
       "bookCount": "{count} livre(s)",
       "bookCount_one": "{count} livre",
       "bookCount_other": "{count} livres"
     },
     "createBookshelf": {
-      "title": "Créer une bibliothèque",
+      "title": "Créer une étagère",
       "name": "Nom",
       "visibility": "Visibilité",
       "public": "Public",
       "private": "Privé",
-      "bookshelfNamePlaceholder": "Nom de la bibliothèque",
+      "bookshelfNamePlaceholder": "Nom de l'étagère",
       "create": "Créer",
       "cancel": "Annuler"
     },
@@ -41,12 +41,12 @@
       "visibility": "Visibilité",
       "public": "Public",
       "private": "Privé",
-      "bookshelfNamePlaceholder": "Nom de la bibliothèque",
+      "bookshelfNamePlaceholder": "Nom de l'étagère",
       "save": "Enregistrer",
       "cancel": "Annuler"
     },
     "defaultBookshelf": {
-      "title": "Bibliothèque par défaut",
+      "title": "Étagère par défaut",
       "private": "privé",
       "bookCount": "{count} livre(s)"
     },
@@ -65,7 +65,7 @@
     "navLinks": {
       "home": "Accueil",
       "addBook": "Ajouter un livre",
-      "bookshelves": "Bibliothèques",
+      "bookshelves": "Étagères",
       "allBooks": "Tous les livres",
       "settings": "Paramètres"
     },
