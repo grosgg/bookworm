@@ -11,6 +11,11 @@ import { BookshelfSchema } from './definitions';
 const createBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
 const editBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL!,
+  ssl: { rejectUnauthorized: false },
+});
+
 export async function createBookshelfAction(formData: FormData) {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -18,11 +23,6 @@ export async function createBookshelfAction(formData: FormData) {
   if (!session) {
     throw new Error('Unauthorized');
   }
-
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL!,
-    ssl: { rejectUnauthorized: false },
-  });
 
   const { name, visibility } = createBookshelfSchema.parse({
     name: formData.get('name'),
@@ -44,11 +44,6 @@ export async function editBookshelfAction(id: string, formData: FormData) {
     visibility: formData.get('visibility'),
   });
 
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL!,
-    ssl: { rejectUnauthorized: false },
-  });
-
   await pool.query(
     'UPDATE bookshelf SET name = $1, visibility = $2, "updatedAt" = NOW() WHERE id = $3',
     [name, visibility, id]
@@ -64,11 +59,6 @@ export async function addBookToCollectionAction(formData: FormData) {
   if (!session) {
     throw new Error('Unauthorized');
   }
-
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL!,
-    ssl: { rejectUnauthorized: false },
-  });
 
   await pool.query(
     'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',

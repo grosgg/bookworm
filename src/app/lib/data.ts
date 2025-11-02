@@ -1,6 +1,5 @@
 import { Pool } from 'pg';
 import { UserType, BookType, BookshelfType, VolumeInfoType, IndustryIdentifierType } from './definitions';
-import { v4 as uuidv4 } from 'uuid';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
@@ -14,20 +13,6 @@ export async function getUserByGoogleId(googleId: string) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch user data.');
-  }
-}
-
-export async function createDefaultBook(userId: string) {
-  try {
-    const id = uuidv4();
-    const result = await pool.query<BookType>(
-      'INSERT INTO book (id, "userId", title, author, isbn, status, "coverUrl", notes, "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW()) RETURNING *',
-      [id, userId, "Le Capital", "Karl Marx", "9782070355747", "not_read", "https://images.isbndb.com/covers/3421723482925.jpg", "A book that everybody talks about but nobody reads."]
-    );
-    return result.rows[0];
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw error;
   }
 }
 
