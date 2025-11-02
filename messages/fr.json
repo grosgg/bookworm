@@ -3,6 +3,53 @@
     "front": {
       "hero": "Bienvenue sur Bookworm, votre bibliothèque numérique."
     },
+    "home": {
+      "title": "Accueil"
+    },
+    "books": {
+      "title": "Livres"
+    },
+    "addBook": {
+      "title": "Ajouter un livre"
+    },
+    "bookDetail": {
+      "personalNotes": "Notes personnelles",
+      "noNotesYet": "Aucune note pour le moment",
+      "pages": "pages",
+      "isbn": "ISBN :"
+    },
+    "bookshelves": {
+      "title": "Bibliothèques",
+      "newBookshelf": "Nouvelle bibliothèque",
+      "bookCount": "{count} livre(s)",
+      "bookCount_one": "{count} livre",
+      "bookCount_other": "{count} livres"
+    },
+    "createBookshelf": {
+      "title": "Créer une bibliothèque",
+      "name": "Nom",
+      "visibility": "Visibilité",
+      "public": "Public",
+      "private": "Privé",
+      "bookshelfNamePlaceholder": "Nom de la bibliothèque",
+      "create": "Créer",
+      "cancel": "Annuler"
+    },
+    "editBookshelf": {
+      "title": "Modifier {name}",
+      "name": "Nom",
+      "visibility": "Visibilité",
+      "public": "Public",
+      "private": "Privé",
+      "bookshelfNamePlaceholder": "Nom de la bibliothèque",
+      "save": "Enregistrer",
+      "cancel": "Annuler"
+    },
+    "defaultBookshelf": {
+      "title": "Bibliothèque par défaut",
+      "private": "privé",
+      "bookCount": "{count} livre(s)"
+    },
     "settings": {
       "title": "Paramètres"
     }
@@ -11,6 +58,53 @@
     "signinButton": {
       "signIn": "Se connecter avec Google",
       "goToDashboard": "Accéder au dashboard"
+    },
+    "signoutButton": {
+      "signOut": "Se déconnecter"
+    },
+    "navLinks": {
+      "home": "Accueil",
+      "addBook": "Ajouter un livre",
+      "bookshelves": "Bibliothèques",
+      "allBooks": "Tous les livres",
+      "settings": "Paramètres"
+    },
+    "localeLinks": {
+      "english": "English",
+      "francais": "Français"
+    },
+    "searchForm": {
+      "searchBy": "Rechercher par",
+      "title": "Titre",
+      "isbn": "ISBN",
+      "language": "Langue",
+      "english": "Anglais",
+      "french": "Français",
+      "japanese": "Japonais",
+      "searchPlaceholder": "Entrez le titre du livre ou l'ISBN",
+      "search": "Rechercher"
+    },
+    "scannerButton": {
+      "stopScanning": "Arrêter le scan",
+      "scanBarcode": "Scanner code barre"
+    },
+    "statusPill": {
+      "reading": "En cours",
+      "read": "Lu",
+      "notRead": "Non lu"
+    },
+    "searchResults": {
+      "noBooksFound": "Aucun livre trouvé"
+    },
+    "addToCollectionButton": {
+      "addToCollection": "Ajouter à la collection"
+    },
+    "bookshelfCard": {
+      "edit": "Modifier",
+      "bookCount": "{count} livre(s)"
+    },
+    "bookCard": {
+      "coverAlt": "Couverture de {title}"
     }
   }
 }

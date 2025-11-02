@@ -1,7 +1,9 @@
 'use client';
 import { setLocaleAction } from "@/app/lib/actions";
+import { useTranslations } from 'next-intl';
 
 export default function LocaleLinks() {
+  const t = useTranslations('ui.localeLinks');
   return (
     <>
       <a
@@ -11,7 +13,7 @@ export default function LocaleLinks() {
           window.location.reload();
         }}
       >
-        English
+        {t('english')}
       </a>
       <span className="text-sm text-gray-400">|</span>
       <a
@@ -21,7 +23,7 @@ export default function LocaleLinks() {
           window.location.reload();
         }}
       >
-        Français
+        {t('francais')}
       </a>
 
     </>

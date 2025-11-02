@@ -10,17 +10,19 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-
-const links = [
-  { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Add Book', href: '/books/add', icon: PlusIcon },
-  { name: 'Bookshelves', href: '/bookshelves', icon: FolderIcon },
-  { name: 'All Books', href: '/books', icon: BookOpenIcon },
-  { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
-];
+import { useTranslations } from 'next-intl';
 
 export default function NavLinks() {
+  const t = useTranslations('ui.navLinks');
   const pathname = usePathname();
+
+  const links = [
+    { name: t('home'), href: '/home', icon: HomeIcon },
+    { name: t('addBook'), href: '/books/add', icon: PlusIcon },
+    { name: t('bookshelves'), href: '/bookshelves', icon: FolderIcon },
+    { name: t('allBooks'), href: '/books', icon: BookOpenIcon },
+    { name: t('settings'), href: '/settings', icon: Cog6ToothIcon },
+  ];
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function NavLinks() {
         const LinkIcon = link.icon;
         return (
           <Link
-            key={link.name}
+            key={link.href}
             href={link.href}
             className={clsx("flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-600 md:flex-none md:justify-start md:p-2 md:px-3",
               {

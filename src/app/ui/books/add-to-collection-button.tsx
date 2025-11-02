@@ -1,7 +1,9 @@
 import { BookType } from "@/app/lib/definitions";
 import { addBookToCollectionAction } from "@/app/lib/actions";
+import { getTranslations } from 'next-intl/server';
 
-export default function AddToCollectionButton({ book }: { book: BookType }) {
+export default async function AddToCollectionButton({ book }: { book: BookType }) {
+  const t = await getTranslations('ui.addToCollectionButton');
   return (
     <form action={addBookToCollectionAction}>
       <input type="hidden" name="title" value={book.title} />
@@ -14,7 +16,7 @@ export default function AddToCollectionButton({ book }: { book: BookType }) {
       <input type="hidden" name="language" value={book.language} />
 
       <button type="submit" className="mt-2 bg-yellow-200 hover:bg-yellow-100 text-black rounded px-4 py-2 font-medium">
-        Add to collection
+        {t('addToCollection')}
       </button>
     </form>
   );

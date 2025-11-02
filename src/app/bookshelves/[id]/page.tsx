@@ -1,8 +1,10 @@
 import { getBooksByBookshelfId, getBookshelfById } from "@/app/lib/data";
 import { BookshelfType, BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
+import { getTranslations } from 'next-intl/server';
 
 export default async function BookshelfPage(props: { params: Promise<{ id: string }> }) {
+  const t = await getTranslations('pages.bookshelves');
   const params = await props.params;
   const [bookshelf, books]: [BookshelfType, BookType[]] = await Promise.all([
     getBookshelfById(params.id),
@@ -14,7 +16,7 @@ export default async function BookshelfPage(props: { params: Promise<{ id: strin
       <div>
         <h1 className="text-3xl font-bold">{bookshelf.name}</h1>
         <p className="text-sm text-gray-500">{bookshelf.visibility}</p>
-        <p className="text-md font-medium">{books.length} book(s)</p>
+        <p className="text-md font-medium">{t('bookCount', { count: books.length })}</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {books.map((book) => (

@@ -1,5 +1,6 @@
 import BookSearchForm from "@/app/ui/books/search-form";
 import BookSearchResults from "@/app/ui/books/search-results";
+import { getTranslations } from 'next-intl/server';
 
 export default async function AddBookPage(props: {
   searchParams?: Promise<{
@@ -9,13 +10,14 @@ export default async function AddBookPage(props: {
     page?: string;
   }>;
 }) {
+  const t = await getTranslations('pages.addBook');
   const searchParams = await props.searchParams;
   const query = searchParams?.query;
   const searchType = searchParams?.searchType;
   const lang = searchParams?.lang;
   return (
     <div>
-      <h1 className="text-3xl font-bold">Add Book</h1>
+      <h1 className="text-3xl font-bold">{t('title')}</h1>
       <div className="flex flex-col gap-8 mt-8">
         <BookSearchForm />
         {query && searchType && lang && (

@@ -1,8 +1,10 @@
 'use client';
 import { signOut, useSession } from "@/app/lib/auth-client";
 import { PowerIcon } from '@heroicons/react/24/outline';
+import { useTranslations } from 'next-intl';
 
 export default function SignoutButton() {
+  const t = useTranslations('ui.signoutButton');
   const { refetch } = useSession();
 
   return (
@@ -23,7 +25,7 @@ export default function SignoutButton() {
       className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-yellow-100 hover:text-yellow-600 md:flex-none md:justify-start md:p-2 md:px-3 cursor-pointer"
     >
       <PowerIcon className="w-6" />
-      <div className="hidden md:block">Sign Out</div>
+      <div className="hidden md:block">{t('signOut')}</div>
     </button>
   );
 }

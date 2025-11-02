@@ -1,16 +1,18 @@
 import { searchBooks } from "@/app/lib/data";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "./book-card";
+import { getTranslations } from 'next-intl/server';
 
 export default async function BookSearchResults({ searchType, query, lang }: {
   searchType: 'intitle' | 'isbn';
   query: string;
   lang: 'en' | 'fr' | 'ja';
 }) {
+  const t = await getTranslations('ui.searchResults');
   const books = await searchBooks(searchType, query, lang);
 
   if (books.length === 0) {
-    return <div className="text-gray-500">No books found</div>;
+    return <div className="text-gray-500">{t('noBooksFound')}</div>;
   }
 
   return (

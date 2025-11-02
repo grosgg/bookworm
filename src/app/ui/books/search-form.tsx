@@ -3,8 +3,10 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import BarcodeScanner from '@/app/ui/books/barcode-scanner';
 import ScannerButton from '@/app/ui/books/scanner-button';
+import { useTranslations } from 'next-intl';
 
 export default function BookSearchForm() {
+  const t = useTranslations('ui.searchForm');
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -36,7 +38,7 @@ export default function BookSearchForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
       <fieldset className="flex gap-4 items-center">
         <legend className="font-semibold mb-1 flex items-center gap-4">
-          Search by
+          {t('searchBy')}
           <label className="flex items-center gap-2 font-normal">
             <input
               type="radio"
@@ -49,7 +51,7 @@ export default function BookSearchForm() {
               }}
               className="accent-yellow-300"
             />
-            Title
+            {t('title')}
           </label>
           <label className="flex items-center gap-2 font-normal">
             <input
@@ -60,7 +62,7 @@ export default function BookSearchForm() {
               onChange={() => setScannerButtonDisplay(true)}
               className="accent-yellow-300"
             />
-            ISBN
+            {t('isbn')}
           </label>
           {scannerButtonDisplay && <ScannerButton scannerDisplay={scannerDisplay} setScannerDisplay={setScannerDisplay} />}
         </legend>
@@ -68,7 +70,7 @@ export default function BookSearchForm() {
       {/* Language radio buttons */}
       <fieldset className="flex gap-4 items-center">
         <legend className="font-semibold mb-1 flex items-center gap-4">
-          Language
+          {t('language')}
           <label className="flex items-center gap-2 font-normal">
             <input
               type="radio"
@@ -77,7 +79,7 @@ export default function BookSearchForm() {
               defaultChecked={searchParams.get('lang') === null || searchParams.get('lang') === 'en'}
               className="accent-yellow-300"
             />
-            English
+            {t('english')}
           </label>
           <label className="flex items-center gap-2 font-normal">
             <input
@@ -87,7 +89,7 @@ export default function BookSearchForm() {
               defaultChecked={searchParams.get('lang') === 'fr'}
               className="accent-yellow-300"
             />
-            French
+            {t('french')}
           </label>
           <label className="flex items-center gap-2 font-normal">
             <input
@@ -97,7 +99,7 @@ export default function BookSearchForm() {
               defaultChecked={searchParams.get('lang') === 'ja'}
               className="accent-yellow-300"
             />
-            Japanese
+            {t('japanese')}
           </label>
         </legend>
       </fieldset>
@@ -106,21 +108,21 @@ export default function BookSearchForm() {
         id="search-input"
         name="query"
         className="border rounded px-3 py-2"
-        placeholder="Enter book title or ISBN"
+        placeholder={t('searchPlaceholder')}
         required
         minLength={3}
         onBlur={e => {
           const target = e.target as HTMLInputElement;
           target.value = target.value.trim();
         }}
-        defaultValue={searchParams.get('query') || barcode || ''}
+        defaultValue={barcode || searchParams.get('query') || ''}
       />
       {scannerDisplay && <BarcodeScanner setBarcode={setBarcode} />}
       <button
         type="submit"
         className="mt-2 bg-yellow-200 hover:bg-yellow-100 text-black rounded px-4 py-2 font-medium cursor-pointer"
       >
-        Search
+        {t('search')}
       </button>
     </form>
   );

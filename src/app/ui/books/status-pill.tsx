@@ -1,8 +1,11 @@
-export default function StatusPill({ status }: { status: 'reading' | 'read' | 'not_read' }) {
+import { getTranslations } from 'next-intl/server';
+
+export default async function StatusPill({ status }: { status: 'reading' | 'read' | 'not_read' }) {
+  const t = await getTranslations('ui.statusPill');
   const statusLabels = {
-    reading: 'Reading',
-    read: 'Read',
-    not_read: 'Not Read',
+    reading: t('reading'),
+    read: t('read'),
+    not_read: t('notRead'),
   };
   const statusColors = {
     reading: 'bg-yellow-100',

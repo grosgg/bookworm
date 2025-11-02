@@ -1,11 +1,11 @@
 import Image from "next/image";
 import BookwormLogo from "@/app/ui/layout/bookworm-logo";
 import SigninButton from "@/app/ui/auth/signin-button";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Footer from "@/app/ui/layout/footer";
 
-export default function Page() {
-  const t = useTranslations('pages.front');
+export default async function Page() {
+  const t = await getTranslations('pages.front');
   return (
     <main className="flex min-h-screen flex-col p-6 gap-6">
       <div className="flex h-18 shrink-0 items-end rounded-lg bg-yellow-200 p-4 md:h-18">
@@ -17,7 +17,7 @@ export default function Page() {
             src="/bookworm-glasses.png"
             width={400}
             height={400}
-            alt="Bookworm Mascot, Wormy Boy"
+            alt="Wormy Boi"
           />
         </div>
         <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
