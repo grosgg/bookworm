@@ -101,6 +101,11 @@
       "private": "Private",
       "public": "Public"
     },
+    "languagePill": {
+      "english": "English",
+      "french": "French",
+      "japanese": "Japanese"
+    },
     "searchResults": {
       "noBooksFound": "No books found"
     },

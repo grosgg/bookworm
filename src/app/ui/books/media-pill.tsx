@@ -7,8 +7,8 @@ export default async function MediaPill({ media }: { media: 'physical' | 'digita
     digital: t('digital'),
   };
   const mediaColors = {
-    physical: 'bg-gray-500 text-white',
-    digital: 'bg-gray-500 text-white',
+    physical: 'bg-gray-400 text-white',
+    digital: 'bg-gray-400 text-white',
   };
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-sm font-medium ${mediaColors[media]}`}>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getBooksFromDefaultBookshelf } from "@/app/lib/data";
 import { getTranslations } from 'next-intl/server';
+import VisibilityPill from "../books/visibility-pill";
 
 export default async function DefaultBookshelfCard({ userId }: { userId: string }) {
   const t = await getTranslations('pages.defaultBookshelf');
@@ -14,7 +15,7 @@ export default async function DefaultBookshelfCard({ userId }: { userId: string 
       <Link href="/bookshelves/default">
         <h2 className="text-2xl font-bold mb-2">{t('title')}</h2>
       </Link>
-      <p className="text-sm text-gray-500">{t('private')}</p>
+      <VisibilityPill visibility="private" />
       <p className="text-md font-medium">{t('bookCount', { count: books.length })}</p>
     </div>
   );

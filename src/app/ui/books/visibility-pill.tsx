@@ -7,7 +7,7 @@ export default async function VisibilityPill({ visibility }: { visibility: 'priv
     public: t('public'),
   };
   const visibilityColors = {
-    private: 'bg-gray-500 text-white',
+    private: 'bg-gray-400 text-white',
     public: 'bg-yellow-100',
   };
   return (
