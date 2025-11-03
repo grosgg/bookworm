@@ -1,8 +1,7 @@
 // import Bookshelf from '@/app/ui/books/bookshelf';
 import { BookshelfType } from '@/app/lib/definitions';
 import { getBookshelvesByUserId } from '@/app/lib/data';
-import { auth } from '@/app/lib/auth';
-import { headers } from 'next/headers';
+import { requireSession } from '@/app/lib/auth';
 import { FolderPlusIcon } from '@heroicons/react/24/outline';
 import BookshelfCard from '@/app/ui/bookshelf/bookshelf-card';
 import Link from 'next/link';
@@ -11,10 +10,7 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function BookshelvesPage() {
   const t = await getTranslations('pages.bookshelves');
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session) { throw new Error('Unauthorized'); }
+  const session = await requireSession();
 
   const userId = session.user.id;
   const bookshelves: BookshelfType[] = await getBookshelvesByUserId(userId);

@@ -1,8 +1,8 @@
-import { requireAuth } from '@/app/lib/auth';
+import { requireSession } from '@/app/lib/auth';
 import SideNav from '@/app/ui/layout/sidenav';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  await requireAuth();
+  await requireSession();
 
   return (
     <main className="flex flex-col gap-4 p-4 h-screen">

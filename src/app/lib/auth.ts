@@ -24,12 +24,13 @@ export const auth = betterAuth({
   },
 });
 
-export async function requireAuth() {
+export async function requireSession() {
   const session = await auth.api.getSession({
     headers: await headers()
   });
 
   if (!session) {
+    console.error('Unauthorized');
     redirect('/');
   }
 

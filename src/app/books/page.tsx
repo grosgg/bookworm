@@ -1,5 +1,4 @@
-import { auth } from "@/app/lib/auth";
-import { headers } from "next/headers";
+import { requireSession } from "@/app/lib/auth";
 import { getBooksByUserId } from "@/app/lib/data";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
@@ -7,10 +6,7 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function BooksPage() {
   const t = await getTranslations('pages.books');
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session) { throw new Error('Unauthorized'); }
+  const session = await requireSession();
 
   const userId = session.user.id;
   const books = await getBooksByUserId(userId);

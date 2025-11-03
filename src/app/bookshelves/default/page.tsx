@@ -1,6 +1,5 @@
 import { getBooksFromDefaultBookshelf } from "@/app/lib/data";
-import { auth } from "@/app/lib/auth";
-import { headers } from "next/headers";
+import { requireSession } from "@/app/lib/auth";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
 import { getTranslations } from 'next-intl/server';
@@ -9,10 +8,7 @@ import VisibilityPill from "@/app/ui/books/visibility-pill";
 export default async function DefaultBookshelfPage() {
   const t = await getTranslations('pages.defaultBookshelf');
   const tBookshelves = await getTranslations('pages.bookshelves');
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session) { throw new Error('Unauthorized'); }
+  const session = await requireSession();
 
   const userId = session.user.id;
   const books: BookType[] = await getBooksFromDefaultBookshelf(userId);

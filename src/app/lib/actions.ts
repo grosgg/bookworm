@@ -3,8 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { v4 as uuidv4 } from 'uuid';
 import { Pool } from 'pg';
-import { auth } from './auth';
-import { cookies, headers } from 'next/headers';
+import { requireSession } from './auth';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { BookshelfSchema } from './definitions';
 
@@ -17,12 +17,7 @@ const pool = new Pool({
 });
 
 export async function createBookshelfAction(formData: FormData) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session) {
-    throw new Error('Unauthorized');
-  }
+  const session = await requireSession();
 
   const { name, visibility } = createBookshelfSchema.parse({
     name: formData.get('name'),
@@ -53,12 +48,7 @@ export async function editBookshelfAction(id: string, formData: FormData) {
 }
 
 export async function addBookToCollectionAction(formData: FormData) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  if (!session) {
-    throw new Error('Unauthorized');
-  }
+  const session = await requireSession();
 
   await pool.query(
     'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
