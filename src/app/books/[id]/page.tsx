@@ -4,11 +4,14 @@ import LanguagePill from "@/app/ui/books/language-pill";
 import MediaPill from "@/app/ui/books/media-pill";
 import StatusPill from "@/app/ui/books/status-pill";
 import { getTranslations } from 'next-intl/server';
+import { redirect } from "next/navigation";
 
 export default async function BookPage(props: { params: Promise<{ id: string }> }) {
   const t = await getTranslations('pages.bookDetail');
   const params = await props.params;
-  const book: BookType = await getBookById(params.id);
+  const book: BookType | undefined = await getBookById(params.id);
+  if (!book) { redirect('/books'); }
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-start gap-20 lg:w-2/3">

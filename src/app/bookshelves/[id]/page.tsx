@@ -3,6 +3,7 @@ import { BookshelfType, BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
 import VisibilityPill from "@/app/ui/books/visibility-pill";
 import { getTranslations } from 'next-intl/server';
+import { redirect } from "next/navigation";
 
 export default async function BookshelfPage(props: { params: Promise<{ id: string }> }) {
   const t = await getTranslations('pages.bookshelves');
@@ -11,6 +12,8 @@ export default async function BookshelfPage(props: { params: Promise<{ id: strin
     getBookshelfById(params.id),
     getBooksByBookshelfId(params.id)
   ]);
+
+  if (!bookshelf) { redirect('/bookshelves'); }
 
   return (
     <div className="flex flex-col gap-4">

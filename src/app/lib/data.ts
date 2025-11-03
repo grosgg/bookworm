@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import { UserType, BookType, BookshelfType, VolumeInfoType, IndustryIdentifierType } from './definitions';
+import { requireSession } from './auth';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
@@ -17,8 +18,9 @@ export async function getUserByGoogleId(googleId: string) {
 }
 
 export async function getBookshelfById(id: string) {
+  const session = await requireSession();
   try {
-    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE id = $1', [id]);
+    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE id = $1 AND ("userId" = $2 OR visibility = $3)', [id, session.user.id, 'public']);
     return result.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
@@ -27,8 +29,9 @@ export async function getBookshelfById(id: string) {
 }
 
 export async function getBookshelvesByUserId(userId: string) {
+  const session = await requireSession();
   try {
-    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1 ORDER BY "updatedAt" DESC', [userId]);
+    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1 AND ("userId" = $2 OR visibility = $3) ORDER BY "updatedAt" DESC', [userId, session.user.id, 'public']);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -38,7 +41,8 @@ export async function getBookshelvesByUserId(userId: string) {
 
 export async function getBooksByBookshelfId(bookshelfId: string) {
   try {
-    const result = await pool.query<BookType>('SELECT * FROM book WHERE "bookshelfId" = $1 ORDER BY "updatedAt" DESC', [bookshelfId]);
+    const session = await requireSession();
+    const result = await pool.query<BookType>('SELECT * FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3) ORDER BY book."updatedAt" DESC', [bookshelfId, 'public', session.user.id]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -56,9 +60,10 @@ export async function getBooksFromDefaultBookshelf(userId: string) {
   }
 }
 
-export async function getBooksByUserId(userId: string) {
+export async function getBooksForCurrentUser() {
+  const session = await requireSession();
   try {
-    const result = await pool.query<BookType>('SELECT * FROM book WHERE "userId" = $1 ORDER BY "updatedAt" DESC', [userId]);
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "userId" = $1 ORDER BY "updatedAt" DESC', [session.user.id]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -68,7 +73,8 @@ export async function getBooksByUserId(userId: string) {
 
 export async function getBookById(id: string) {
   try {
-    const result = await pool.query<BookType>('SELECT * FROM book WHERE id = $1', [id]);
+    const session = await requireSession();
+    const result = await pool.query<BookType>('SELECT * FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book.id = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3)', [id, 'public', session.user.id]);
     return result.rows[0];
   } catch (error) {
     console.error('Database Error:', error);

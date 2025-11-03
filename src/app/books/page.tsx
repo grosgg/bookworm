@@ -1,15 +1,12 @@
-import { requireSession } from "@/app/lib/auth";
-import { getBooksByUserId } from "@/app/lib/data";
+import { getBooksForCurrentUser } from "@/app/lib/data";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/book-card";
 import { getTranslations } from 'next-intl/server';
 
 export default async function BooksPage() {
   const t = await getTranslations('pages.books');
-  const session = await requireSession();
 
-  const userId = session.user.id;
-  const books = await getBooksByUserId(userId);
+  const books = await getBooksForCurrentUser();
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-bold">{t('title')}</h1>
