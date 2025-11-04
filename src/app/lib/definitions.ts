@@ -24,7 +24,7 @@ export type BookshelfType = z.infer<typeof BookshelfSchema>;
 export const BookSchema = z.object({
   id: z.uuid(),
   userId: z.uuid(),
-  bookshelfId: z.uuid().optional(),
+  bookshelfId: z.uuid().nullable(),
   title: z.string().min(1),
   author: z.string().optional(),
   isbn: z.string().optional(),

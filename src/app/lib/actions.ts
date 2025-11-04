@@ -6,10 +6,11 @@ import { Pool } from 'pg';
 import { requireSession } from './auth';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { ActionStateType, BookshelfSchema } from './definitions';
+import { ActionStateType, BookshelfSchema, BookSchema } from './definitions';
 
 const createBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
 const editBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
+const editBookSchema = BookSchema.pick({ media: true, status: true, notes: true, bookshelfId: true });
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL!,
@@ -79,6 +80,27 @@ export async function addBookToCollectionAction(formData: FormData) {
 
   revalidatePath('/bookshelves');
   redirect('/bookshelves');
+}
+
+export async function editBookAction(id: string, _previousState: ActionStateType, formData: FormData) {
+  const { media, status, notes, bookshelfId } = editBookSchema.parse({
+    media: formData.get('media'),
+    status: formData.get('status'),
+    notes: formData.get('notes'),
+    bookshelfId: (formData.get('bookshelfId') as string)?.length > 0 ? formData.get('bookshelfId') : null,
+  });
+
+  try {
+    await pool.query(
+      'UPDATE book SET media = $1, status = $2, notes = $3, "bookshelfId" = $4, "updatedAt" = NOW() WHERE id = $5',
+      [media, status, notes, bookshelfId, id]
+    );
+    revalidatePath(`/books/${id}/edit`);
+    return { success: true, message: 'Book updated successfully.', toast: true, redirect: `/books/${id}` };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to update book.', toast: true, redirect: '' };
+  }
 }
 
 export async function setLocaleAction(locale: string) {

@@ -11,7 +11,6 @@ export default function BookshelfForm({ action, bookshelf }: { action: (_previou
   const [formState, formAction] = useActionState(action, { success: false, message: '', toast: false, redirect: '' });
 
   useEffect(() => {
-    console.log('formState', formState);
     handleActionResponse(formState);
   }, [formState])
 

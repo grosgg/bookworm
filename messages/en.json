@@ -12,7 +12,11 @@
     "addBook": {
       "title": "Add Book"
     },
+    "editBook": {
+      "title": "Edit {title}"
+    },
     "bookDetail": {
+      "edit": "Edit",
       "personalNotes": "Notes",
       "noNotesYet": "No notes yet",
       "pages": "pages",
@@ -65,6 +69,21 @@
     "localeLinks": {
       "english": "English",
       "francais": "Français"
+    },
+    "bookForm": {
+      "media": "Media",
+      "physical": "Physical",
+      "digital": "Digital",
+      "status": "Status",
+      "reading": "Reading",
+      "read": "Read",
+      "not_read": "Not Read",
+      "notes": "Notes",
+      "notesPlaceholder": "Enter notes",
+      "bookshelf": "Bookshelf",
+      "selectBookshelf": "Select Bookshelf",
+      "save": "Save",
+      "cancel": "Cancel"
     },
     "bookshelfForm": {
       "name": "Name",

@@ -42,7 +42,7 @@ export async function getBookshelvesByUserId(userId: string) {
 export async function getBooksByBookshelfId(bookshelfId: string) {
   try {
     const session = await requireSession();
-    const result = await pool.query<BookType>('SELECT * FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3) ORDER BY book."updatedAt" DESC', [bookshelfId, 'public', session.user.id]);
+    const result = await pool.query<BookType>('SELECT book.* FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3) ORDER BY book."updatedAt" DESC', [bookshelfId, 'public', session.user.id]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -74,7 +74,7 @@ export async function getBooksForCurrentUser() {
 export async function getBookById(id: string) {
   try {
     const session = await requireSession();
-    const result = await pool.query<BookType>('SELECT * FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book.id = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3)', [id, 'public', session.user.id]);
+    const result = await pool.query<BookType>('SELECT book.* FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book.id = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3)', [id, 'public', session.user.id]);
     return result.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
