@@ -36,14 +36,7 @@
       "cancel": "Cancel"
     },
     "editBookshelf": {
-      "title": "Edit {name}",
-      "name": "Name",
-      "visibility": "Visibility",
-      "public": "Public",
-      "private": "Private",
-      "bookshelfNamePlaceholder": "Bookshelf Name",
-      "save": "Save",
-      "cancel": "Cancel"
+      "title": "Edit {name}"
     },
     "defaultBookshelf": {
       "title": "Default Bookshelf",
@@ -72,6 +65,15 @@
     "localeLinks": {
       "english": "English",
       "francais": "Français"
+    },
+    "bookshelfForm": {
+      "name": "Name",
+      "visibility": "Visibility",
+      "public": "Public",
+      "private": "Private",
+      "bookshelfNamePlaceholder": "Bookshelf Name",
+      "save": "Save",
+      "cancel": "Cancel"
     },
     "searchForm": {
       "searchBy": "Search by",

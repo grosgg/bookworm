@@ -36,14 +36,7 @@
       "cancel": "Annuler"
     },
     "editBookshelf": {
-      "title": "Modifier {name}",
-      "name": "Nom",
-      "visibility": "Visibilité",
-      "public": "Public",
-      "private": "Privé",
-      "bookshelfNamePlaceholder": "Nom de l'étagère",
-      "save": "Enregistrer",
-      "cancel": "Annuler"
+      "title": "Modifier {name}"
     },
     "defaultBookshelf": {
       "title": "Étagère par défaut",
@@ -72,6 +65,15 @@
     "localeLinks": {
       "english": "English",
       "francais": "Français"
+    },
+    "bookshelfForm": {
+      "name": "Nom",
+      "visibility": "Visibilité",
+      "public": "Public",
+      "private": "Privé",
+      "bookshelfNamePlaceholder": "Nom de l'étagère",
+      "save": "Enregistrer",
+      "cancel": "Annuler"
     },
     "searchForm": {
       "searchBy": "Rechercher par",

@@ -6,7 +6,7 @@ import { Pool } from 'pg';
 import { requireSession } from './auth';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { BookshelfSchema } from './definitions';
+import { ActionStateType, BookshelfSchema } from './definitions';
 
 const createBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
 const editBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
@@ -16,7 +16,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-export async function createBookshelfAction(formData: FormData) {
+export async function createBookshelfAction(_previousState: ActionStateType, formData: FormData) {
   const session = await requireSession();
 
   const { name, visibility } = createBookshelfSchema.parse({
@@ -25,26 +25,36 @@ export async function createBookshelfAction(formData: FormData) {
   });
   const userId = session.user.id;
 
-  await pool.query(
-    'INSERT INTO bookshelf (id, "userId", name, visibility, "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, NOW(), NOW())',
-    [uuidv4(), userId, name, visibility]
-  );
-  revalidatePath('/bookshelves');
-  redirect('/bookshelves');
+  try {
+    await pool.query(
+      'INSERT INTO bookshelf (id, "userId", name, visibility, "createdAt", "updatedAt") VALUES ($1, $2, $3, $4, NOW(), NOW())',
+      [uuidv4(), userId, name, visibility]
+    );
+
+    return { success: true, message: 'Bookshelf created successfully.', toast: true, redirect: '/bookshelves' };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to create bookshelf.', toast: true, redirect: '' };
+  }
 }
 
-export async function editBookshelfAction(id: string, formData: FormData) {
+export async function editBookshelfAction(id: string, _previousState: ActionStateType, formData: FormData) {
   const { name, visibility } = editBookshelfSchema.parse({
     name: formData.get('name'),
     visibility: formData.get('visibility'),
   });
 
-  await pool.query(
-    'UPDATE bookshelf SET name = $1, visibility = $2, "updatedAt" = NOW() WHERE id = $3',
-    [name, visibility, id]
-  );
-  revalidatePath('/bookshelves');
-  redirect('/bookshelves');
+  try {
+    await pool.query(
+      'UPDATE bookshelf SET name = $1, visibility = $2, "updatedAt" = NOW() WHERE id = $3',
+      [name, visibility, id]
+    );
+    revalidatePath(`/bookshelves/${id}/edit`);
+    return { success: true, message: 'Bookshelf updated successfully.', toast: true, redirect: `/bookshelves/` };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to update bookshelf.', toast: true, redirect: '' };
+  }
 }
 
 export async function addBookToCollectionAction(formData: FormData) {

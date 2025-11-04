@@ -55,3 +55,5 @@ export const VolumeInfoSchema = z.object({
   language: z.string().optional(),
 });
 export type VolumeInfoType = z.infer<typeof VolumeInfoSchema>;
+
+export type ActionStateType = { success: boolean, message: string, toast: boolean, redirect: string };

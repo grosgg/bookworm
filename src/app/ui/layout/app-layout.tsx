@@ -1,5 +1,6 @@
 import { requireSession } from '@/app/lib/auth';
 import SideNav from '@/app/ui/layout/sidenav';
+import { Toaster } from 'sonner';
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   await requireSession();
@@ -12,6 +13,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         </div>
         <div className="flex-grow p-6 md:overflow-y-auto">
           {children}
+          <Toaster />
         </div>
       </div>
     </main>
