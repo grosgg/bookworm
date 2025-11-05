@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { getBooksByBookshelfId } from "@/app/lib/data";
+import { getBooksCountForBookshelf } from "@/app/lib/data";
 import { BookshelfType } from "@/app/lib/definitions";
 import { getTranslations } from 'next-intl/server';
 import VisibilityPill from "@/app/ui/books/visibility-pill";
 
 export default async function BookshelfCard({ bookshelf }: { bookshelf: BookshelfType }) {
   const t = await getTranslations('ui.bookshelfCard');
-  const books = await getBooksByBookshelfId(bookshelf.id);
+  const booksCount = await getBooksCountForBookshelf(bookshelf.id);
 
   return (
     <div
@@ -17,7 +17,7 @@ export default async function BookshelfCard({ bookshelf }: { bookshelf: Bookshel
         <h2 className="text-2xl font-bold mb-2">{bookshelf.name}</h2>
       </Link>
       <VisibilityPill visibility={bookshelf.visibility} />
-      <p className="text-md font-medium">{t('bookCount', { count: books.length })}</p>
+      <p className="text-md font-medium">{t('bookCount', { count: booksCount })}</p>
       <div className="flex items-center gap-2">
         <Link href={`/bookshelves/${bookshelf.id}/edit`} className="text-sm text-yellow-500">{t('edit')}</Link>
         {/* <Link href={`/bookshelves/${bookshelf.id}/delete`} className="text-sm text-red-500">Delete</Link> */}

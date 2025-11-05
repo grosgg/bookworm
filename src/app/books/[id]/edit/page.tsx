@@ -1,4 +1,4 @@
-import { getBookById, getBookshelvesByUserId } from "@/app/lib/data";
+import { getBookById, getAllBookshelvesByUserId } from "@/app/lib/data";
 import { ActionStateType, BookshelfType, BookType } from "@/app/lib/definitions";
 import { getTranslations } from "next-intl/server";
 import { editBookAction } from "@/app/lib/actions";
@@ -10,7 +10,7 @@ export default async function EditBookPage(props: { params: Promise<{ id: string
   const tBook = await getTranslations('pages.bookDetail');
   const params = await props.params;
   const book: BookType = await getBookById(params.id);
-  const bookshelves: BookshelfType[] = await getBookshelvesByUserId(book.userId);
+  const bookshelves: BookshelfType[] = await getAllBookshelvesByUserId(book.userId);
   const editBookActionWithId: (_previousState: ActionStateType, formData: FormData) => Promise<ActionStateType> = editBookAction.bind(null, params.id);
 
   return (

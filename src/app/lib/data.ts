@@ -39,6 +39,17 @@ export async function getBookshelvesByUserId(userId: string, page: number) {
   }
 }
 
+export async function getAllBookshelvesByUserId(userId: string) {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<BookshelfType>('SELECT * FROM bookshelf WHERE "userId" = $1 AND ("userId" = $2 OR visibility = $3) ORDER BY "updatedAt" DESC', [userId, session.user.id, 'public']);
+    return result.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch bookshelves data.');
+  }
+}
+
 export async function getBookshelvesCountForCurrentUser(userId: string) {
   try {
     const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM bookshelf WHERE "userId" = $1', [userId]);
@@ -49,14 +60,25 @@ export async function getBookshelvesCountForCurrentUser(userId: string) {
   }
 }
 
-export async function getBooksByBookshelfId(bookshelfId: string) {
+export async function getBooksByBookshelfId(bookshelfId: string, page: number) {
+  const session = await requireSession();
   try {
-    const session = await requireSession();
-    const result = await pool.query<BookType>('SELECT book.* FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3) ORDER BY book."updatedAt" DESC', [bookshelfId, 'public', session.user.id]);
+    const result = await pool.query<BookType>('SELECT book.* FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3) ORDER BY book."updatedAt" DESC LIMIT $4 OFFSET $5', [bookshelfId, 'public', session.user.id, 4, (page - 1) * 4]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch books data.');
+  }
+}
+
+export async function getBooksCountForBookshelf(bookshelfId: string) {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM book LEFT JOIN bookshelf ON book."bookshelfId" = bookshelf.id WHERE book."bookshelfId" = $1 AND (bookshelf.visibility = $2 OR book."userId" = $3)', [bookshelfId, 'public', session.user.id]);
+    return result.rows[0].count;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch books count data.');
   }
 }
 
