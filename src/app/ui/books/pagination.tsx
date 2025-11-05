@@ -25,7 +25,7 @@ export default function Pagination({ page, totalPages }: { page: number; totalPa
     <div className="flex justify-center items-center gap-2">
       <button
         onClick={handlePrevious}
-        className={clsx("link", {
+        className={clsx("link cursor-pointer", {
           'text-yellow-500': page > 1,
           'text-gray-500': page <= 1,
         })}
@@ -36,7 +36,7 @@ export default function Pagination({ page, totalPages }: { page: number; totalPa
       <span className="text-sm text-gray-500">{page} / {totalPages}</span>
       <button
         onClick={handleNext}
-        className={clsx("link", {
+        className={clsx("link cursor-pointer", {
           'text-yellow-500': page < totalPages,
           'text-gray-500': page >= totalPages,
         })}

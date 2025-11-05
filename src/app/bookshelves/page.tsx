@@ -1,21 +1,30 @@
 import { BookshelfType } from '@/app/lib/definitions';
-import { getBookshelvesByUserId } from '@/app/lib/data';
+import { getBookshelvesByUserId, getBookshelvesCountForCurrentUser } from '@/app/lib/data';
 import { requireSession } from '@/app/lib/auth';
 import { FolderPlusIcon } from '@heroicons/react/24/outline';
 import BookshelfCard from '@/app/ui/bookshelf/card';
 import Link from 'next/link';
 import DefaultBookshelfCard from '@/app/ui/bookshelf/default-card';
 import { getTranslations } from 'next-intl/server';
+import Pagination from '../ui/books/pagination';
 
-export default async function BookshelvesPage() {
+export default async function BookshelvesPage(props: {
+  searchParams?: Promise<{
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
   const t = await getTranslations('pages.bookshelves');
   const session = await requireSession();
-
+  const page = Number(searchParams?.page) || 1;
   const userId = session.user.id;
-  const bookshelves: BookshelfType[] = await getBookshelvesByUserId(userId);
+  const [bookshelves, totalBookshelves]: [BookshelfType[], number] = await Promise.all([
+    getBookshelvesByUserId(userId, page),
+    getBookshelvesCountForCurrentUser(userId)
+  ]);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-3xl font-bold">{t('title')}</h1>
         <Link
@@ -31,7 +40,7 @@ export default async function BookshelvesPage() {
         ))}
         <DefaultBookshelfCard userId={userId} />
       </div>
-
+      <Pagination page={page} totalPages={Math.ceil(totalBookshelves / 5)} />
     </div>
   );
 }
