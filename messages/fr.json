@@ -152,6 +152,10 @@
     "confirmationDialog": {
       "cancel": "Annuler",
       "confirm": "Confirmer"
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant"
     }
   }
 }

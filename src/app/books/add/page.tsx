@@ -1,4 +1,4 @@
-import BookSearchForm from "@/app/ui/books/search-form";
+import BookSearchForm from "@/app/ui/books/search-api-form";
 import BookSearchResults from "@/app/ui/books/search-results";
 import { getTranslations } from 'next-intl/server';
 

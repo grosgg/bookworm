@@ -60,14 +60,25 @@ export async function getBooksFromDefaultBookshelf(userId: string) {
   }
 }
 
-export async function getBooksForCurrentUser() {
+export async function getBooksForCurrentUser(query: string, page: number) {
   const session = await requireSession();
   try {
-    const result = await pool.query<BookType>('SELECT * FROM book WHERE "userId" = $1 ORDER BY "updatedAt" DESC', [session.user.id]);
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "userId" = $1 AND (title ILIKE $2 OR author ILIKE $2) ORDER BY "updatedAt" DESC LIMIT $3 OFFSET $4', [session.user.id, `%${query}%`, 4, (page - 1) * 4]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch books data.');
+  }
+}
+
+export async function getBooksCountForCurrentUser(query: string) {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM book WHERE "userId" = $1 AND (title ILIKE $2 OR author ILIKE $2)', [session.user.id, `%${query}%`]);
+    return result.rows[0].count;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch books count data.');
   }
 }
 

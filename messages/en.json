@@ -82,7 +82,7 @@
       "notes": "Notes",
       "notesPlaceholder": "Enter notes",
       "bookshelf": "Bookshelf",
-      "selectBookshelf": "Select Bookshelf",
+      "defaultBookshelf": "Default Bookshelf",
       "save": "Save",
       "cancel": "Cancel"
     },
@@ -152,6 +152,10 @@
     "confirmationDialog": {
       "cancel": "Cancel",
       "confirm": "Confirm"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
     }
   }
 }
