@@ -145,6 +145,10 @@
       "deleteConfirmationTitle": "Delete Book",
       "deleteConfirmationMessage": "Are you sure you want to delete {title}?"
     },
+    "deleteBookshelfButton": {
+      "deleteConfirmationTitle": "Delete Bookshelf",
+      "deleteConfirmationMessage": "Are you sure you want to delete {name}?"
+    },
     "confirmationDialog": {
       "cancel": "Cancel",
       "confirm": "Confirm"

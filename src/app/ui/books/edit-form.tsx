@@ -101,7 +101,7 @@ export default function BookForm({ action, book, bookshelves }: { action: (_prev
           {t('bookshelf')}
         </label>
         <select id="bookshelfId" name="bookshelfId" defaultValue={book?.bookshelfId ?? ''} className="rounded border px-4 py-2">
-          <option value="">{t('selectBookshelf')}</option>
+          <option value="">{t('defaultBookshelf')}</option>
           {bookshelves.map((bookshelf) => (
             <option key={bookshelf.id} value={bookshelf.id}>{bookshelf.name}</option>
           ))}

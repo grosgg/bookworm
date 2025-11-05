@@ -58,6 +58,29 @@ export async function editBookshelfAction(id: string, _previousState: ActionStat
   }
 }
 
+export async function deleteBookshelfAction(id: string) {
+  const session = await requireSession();
+
+  try {
+    const books = await pool.query('SELECT * FROM book WHERE "bookshelfId" = $1', [id]);
+    if (books.rows.length > 0) {
+      return { success: false, message: 'Bookshelf has books. Please remove all books from the bookshelf before deleting.', toast: true, redirect: '' };
+    }
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to delete bookshelf.', toast: true, redirect: '' };
+  }
+
+  try {
+    await pool.query('DELETE FROM bookshelf WHERE id = $1 AND "userId" = $2', [id, session.user.id]);
+    revalidatePath(`/bookshelves/${id}`);
+    return { success: true, message: 'Bookshelf deleted successfully.', toast: true, redirect: '/bookshelves' };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to delete bookshelf.', toast: true, redirect: '' };
+  }
+}
+
 export async function addBookToCollectionAction(formData: FormData) {
   const session = await requireSession();
 
