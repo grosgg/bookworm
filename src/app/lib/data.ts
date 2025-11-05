@@ -82,9 +82,10 @@ export async function getBooksCountForBookshelf(bookshelfId: string) {
   }
 }
 
-export async function getBooksFromDefaultBookshelf(userId: string) {
+export async function getBooksFromDefaultBookshelf(page: number) {
+  const session = await requireSession();
   try {
-    const result = await pool.query<BookType>('SELECT * FROM book WHERE "bookshelfId" IS NULL AND "userId" = $1 ORDER BY "updatedAt" DESC', [userId]);
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "bookshelfId" IS NULL AND "userId" = $1 ORDER BY "updatedAt" DESC LIMIT $2 OFFSET $3', [session.user.id, 4, (page - 1) * 4]);
     return result.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -92,6 +93,27 @@ export async function getBooksFromDefaultBookshelf(userId: string) {
   }
 }
 
+export async function getAllBooksFromDefaultBookshelf() {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "bookshelfId" IS NULL AND "userId" = $1 ORDER BY "updatedAt" DESC', [session.user.id]);
+    return result.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch books data.');
+  }
+}
+
+export async function getBooksCountForDefaultBookshelf() {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM book WHERE "bookshelfId" IS NULL AND "userId" = $1', [session.user.id]);
+    return result.rows[0].count;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch books count data.');
+  }
+}
 export async function getBooksForCurrentUser(query: string, page: number) {
   const session = await requireSession();
   try {

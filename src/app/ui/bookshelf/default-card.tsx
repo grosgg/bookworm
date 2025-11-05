@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { getBooksFromDefaultBookshelf } from "@/app/lib/data";
+import { getAllBooksFromDefaultBookshelf } from "@/app/lib/data";
 import { getTranslations } from 'next-intl/server';
 import VisibilityPill from "../books/visibility-pill";
 
 export default async function DefaultBookshelfCard({ userId }: { userId: string }) {
   const t = await getTranslations('pages.defaultBookshelf');
-  const books = await getBooksFromDefaultBookshelf(userId);
+  const books = await getAllBooksFromDefaultBookshelf();
 
   return (
     <div
