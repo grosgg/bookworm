@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import DeleteButton from "@/app/ui/books/delete-button";
 
 export default async function BookPage(props: { params: Promise<{ id: string }> }) {
   const t = await getTranslations('pages.bookDetail');
@@ -22,7 +23,8 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
           <Link
             href={`/books/${book.id}/edit`}
             className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"
-          >{t('edit')} <PencilSquareIcon className="w-4 h-4" /></Link>
+          ><PencilSquareIcon className="w-4 h-4" /></Link>
+          <DeleteButton book={book} />
         </div>
       </div>
       <div>

@@ -17,6 +17,7 @@
     },
     "bookDetail": {
       "edit": "Edit",
+      "delete": "Delete",
       "personalNotes": "Notes",
       "noNotesYet": "No notes yet",
       "pages": "pages",
@@ -139,6 +140,14 @@
     },
     "bookCard": {
       "coverAlt": "Cover of {title}"
+    },
+    "deleteBookButton": {
+      "deleteConfirmationTitle": "Delete Book",
+      "deleteConfirmationMessage": "Are you sure you want to delete {title}?"
+    },
+    "confirmationDialog": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     }
   }
 }

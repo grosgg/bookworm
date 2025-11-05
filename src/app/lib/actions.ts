@@ -103,6 +103,19 @@ export async function editBookAction(id: string, _previousState: ActionStateType
   }
 }
 
+export async function deleteBookAction(id: string) {
+  const session = await requireSession();
+
+  try {
+    await pool.query('DELETE FROM book WHERE id = $1 AND "userId" = $2', [id, session.user.id]);
+    revalidatePath(`/books/${id}`);
+    return { success: true, message: 'Book deleted successfully.', toast: true, redirect: '/books' };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: 'Failed to delete book.', toast: true, redirect: '' };
+  }
+}
+
 export async function setLocaleAction(locale: string) {
   const store = await cookies();
   store.set('locale', locale);
