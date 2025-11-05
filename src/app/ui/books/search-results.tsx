@@ -1,6 +1,6 @@
 import { searchBooks } from "@/app/lib/data";
 import { BookType } from "@/app/lib/definitions";
-import BookCard from "./book-card";
+import BookCard from "@/app/ui/books/search-card";
 import { getTranslations } from 'next-intl/server';
 
 export default async function BookSearchResults({ searchType, query, lang }: {
@@ -18,7 +18,7 @@ export default async function BookSearchResults({ searchType, query, lang }: {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {books.map((book: BookType) => (
-        <BookCard key={book.isbn ?? [book.title, book.author, book.publisher, book.year].join('-')} book={book} onSearch />
+        <BookCard key={book.isbn ?? [book.title, book.author, book.publisher, book.year].join('-')} book={book} />
       ))}
     </div>
   );

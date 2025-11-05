@@ -1,7 +1,7 @@
 import { getBooksFromDefaultBookshelf } from "@/app/lib/data";
 import { requireSession } from "@/app/lib/auth";
 import { BookType } from "@/app/lib/definitions";
-import BookCard from "@/app/ui/books/book-card";
+import BookCard from "@/app/ui/books/list-card";
 import { getTranslations } from 'next-intl/server';
 import VisibilityPill from "@/app/ui/books/visibility-pill";
 
@@ -22,7 +22,7 @@ export default async function DefaultBookshelfPage() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {books.map((book) => (
-          <BookCard key={book.id} book={book} onSearch={false} />
+          <BookCard key={book.id} book={book} />
         ))}
       </div>
     </div>

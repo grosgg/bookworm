@@ -1,11 +1,10 @@
-// import Bookshelf from '@/app/ui/books/bookshelf';
 import { BookshelfType } from '@/app/lib/definitions';
 import { getBookshelvesByUserId } from '@/app/lib/data';
 import { requireSession } from '@/app/lib/auth';
 import { FolderPlusIcon } from '@heroicons/react/24/outline';
-import BookshelfCard from '@/app/ui/bookshelf/bookshelf-card';
+import BookshelfCard from '@/app/ui/bookshelf/card';
 import Link from 'next/link';
-import DefaultBookshelfCard from '@/app/ui/bookshelf/default-bookshelf-card';
+import DefaultBookshelfCard from '@/app/ui/bookshelf/default-card';
 import { getTranslations } from 'next-intl/server';
 
 export default async function BookshelvesPage() {
