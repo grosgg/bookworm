@@ -12,7 +12,8 @@
       "title": "Home"
     },
     "books": {
-      "title": "Books"
+      "title": "Books",
+      "noBooksFound": "No books found"
     },
     "addBook": {
       "title": "Add Book"

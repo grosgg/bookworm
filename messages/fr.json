@@ -12,7 +12,8 @@
       "title": "Accueil"
     },
     "books": {
-      "title": "Livres"
+      "title": "Livres",
+      "noBooksFound": "Aucun livre trouvé"
     },
     "addBook": {
       "title": "Ajouter un livre"
