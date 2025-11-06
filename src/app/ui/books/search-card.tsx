@@ -10,31 +10,35 @@ export default async function BookCard({ book }: { book: BookType }) {
   const isInCollection = book.isbn ? await isBookInCollection(book.isbn) : false;
 
   return (
-    <div className="rounded-lg shadow-md bg-white p-6 border border-gray-200 hover:shadow-lg transition-shadow flex items-start">
-      <div className="flex-1 pr-4">
-        <h2 className="text-xl font-bold mb-2">{book.title}</h2>
-        <p className="text-lg font-medium">{book.author}</p>
-        <p className="text-sm text-gray-500">{book.year}</p>
-        <p className="text-sm text-gray-500">{book.publisher}</p>
-        {!!book.pages && (
-          <p className="text-sm text-gray-500">{book.pages} {t('pages')}</p>
+    <div className="rounded-lg shadow-md bg-white p-6 border border-gray-200 hover:shadow-lg transition-shadow flex-col items-start">
+      <div className="flex flex-col md:flex-row md:w-full">
+        <div className="flex-1 pr-4">
+          <h2 className="text-xl font-bold mb-2">{book.title}</h2>
+          <p className="text-lg font-medium">{book.author}</p>
+          <p className="text-sm text-gray-500">{book.year}</p>
+          <p className="text-sm text-gray-500">{book.publisher}</p>
+          {!!book.pages && (
+            <p className="text-sm text-gray-500">{book.pages} {t('pages')}</p>
+          )}
+          {book.isbn && (
+            <p className="text-sm text-gray-500">{t('isbn')} {book.isbn}</p>
+          )}
+        </div>
+        {book.coverUrl && (
+          <img
+            src={book.coverUrl}
+            alt={book.title}
+            className="w-24 h-36 object-cover rounded my-2 shadow"
+          />
         )}
-        {book.isbn && (
-          <p className="text-sm text-gray-500">{t('isbn')} {book.isbn}</p>
-        )}
+      </div>
+      <div className="flex flex-col">
         <div className="flex items-center gap-2 my-2">
           <LanguagePill language={book.language} />
         </div>
 
         <AddToCollectionButton book={book} isInCollection={isInCollection} />
       </div>
-      {book.coverUrl && (
-        <img
-          src={book.coverUrl}
-          alt={book.title}
-          className="w-24 h-36 object-cover rounded ml-4 shadow"
-        />
-      )}
     </div>
   );
 }
