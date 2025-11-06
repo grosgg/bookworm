@@ -7,6 +7,8 @@
 - node-postgres
 - node-pg-migrate
 - zod
+- next-intl
+- sonner
 
 ## Local Development
 1. Make sure Docker or OrbStack is installed.
