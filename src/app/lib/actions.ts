@@ -6,6 +6,7 @@ import { Pool } from 'pg';
 import { requireSession } from './auth';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { ActionStateType, BookshelfSchema, BookSchema } from './definitions';
 
 const createBookshelfSchema = BookshelfSchema.pick({ name: true, visibility: true });
@@ -19,6 +20,7 @@ const pool = new Pool({
 
 export async function createBookshelfAction(_previousState: ActionStateType, formData: FormData) {
   const session = await requireSession();
+  const t = await getTranslations('actions.bookshelf');
 
   const { name, visibility } = createBookshelfSchema.parse({
     name: formData.get('name'),
@@ -32,14 +34,15 @@ export async function createBookshelfAction(_previousState: ActionStateType, for
       [uuidv4(), userId, name, visibility]
     );
 
-    return { success: true, message: 'Bookshelf created successfully.', toast: true, redirect: '/bookshelves' };
+    return { success: true, message: t('createdSuccessfully'), toast: true, redirect: '/bookshelves' };
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to create bookshelf.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToCreate'), toast: true, redirect: '' };
   }
 }
 
 export async function editBookshelfAction(id: string, _previousState: ActionStateType, formData: FormData) {
+  const t = await getTranslations('actions.bookshelf');
   const { name, visibility } = editBookshelfSchema.parse({
     name: formData.get('name'),
     visibility: formData.get('visibility'),
@@ -51,33 +54,34 @@ export async function editBookshelfAction(id: string, _previousState: ActionStat
       [name, visibility, id]
     );
     revalidatePath(`/bookshelves/${id}/edit`);
-    return { success: true, message: 'Bookshelf updated successfully.', toast: true, redirect: `/bookshelves/` };
+    return { success: true, message: t('updatedSuccessfully'), toast: true, redirect: `/bookshelves/` };
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to update bookshelf.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToUpdate'), toast: true, redirect: '' };
   }
 }
 
 export async function deleteBookshelfAction(id: string) {
   const session = await requireSession();
+  const t = await getTranslations('actions.bookshelf');
 
   try {
     const books = await pool.query('SELECT * FROM book WHERE "bookshelfId" = $1', [id]);
     if (books.rows.length > 0) {
-      return { success: false, message: 'Bookshelf has books. Please remove all books from the bookshelf before deleting.', toast: true, redirect: '' };
+      return { success: false, message: t('hasBooks'), toast: true, redirect: '' };
     }
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to delete bookshelf.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToDelete'), toast: true, redirect: '' };
   }
 
   try {
     await pool.query('DELETE FROM bookshelf WHERE id = $1 AND "userId" = $2', [id, session.user.id]);
     revalidatePath(`/bookshelves/${id}`);
-    return { success: true, message: 'Bookshelf deleted successfully.', toast: true, redirect: '/bookshelves' };
+    return { success: true, message: t('deletedSuccessfully'), toast: true, redirect: '/bookshelves' };
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to delete bookshelf.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToDelete'), toast: true, redirect: '' };
   }
 }
 
@@ -106,6 +110,7 @@ export async function addBookToCollectionAction(formData: FormData) {
 }
 
 export async function editBookAction(id: string, _previousState: ActionStateType, formData: FormData) {
+  const t = await getTranslations('actions.book');
   const { media, status, notes, bookshelfId } = editBookSchema.parse({
     media: formData.get('media'),
     status: formData.get('status'),
@@ -119,23 +124,24 @@ export async function editBookAction(id: string, _previousState: ActionStateType
       [media, status, notes, bookshelfId, id]
     );
     revalidatePath(`/books/${id}/edit`);
-    return { success: true, message: 'Book updated successfully.', toast: true, redirect: `/books/${id}` };
+    return { success: true, message: t('updatedSuccessfully'), toast: true, redirect: `/books/${id}` };
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to update book.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToUpdate'), toast: true, redirect: '' };
   }
 }
 
 export async function deleteBookAction(id: string) {
   const session = await requireSession();
+  const t = await getTranslations('actions.book');
 
   try {
     await pool.query('DELETE FROM book WHERE id = $1 AND "userId" = $2', [id, session.user.id]);
     revalidatePath(`/books/${id}`);
-    return { success: true, message: 'Book deleted successfully.', toast: true, redirect: '/books' };
+    return { success: true, message: t('deletedSuccessfully'), toast: true, redirect: '/books' };
   } catch (error) {
     console.error('Database Error:', error);
-    return { success: false, message: 'Failed to delete book.', toast: true, redirect: '' };
+    return { success: false, message: t('failedToDelete'), toast: true, redirect: '' };
   }
 }
 

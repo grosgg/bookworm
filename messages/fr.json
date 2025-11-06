@@ -157,5 +157,22 @@
       "previous": "Précédent",
       "next": "Suivant"
     }
+  },
+  "actions": {
+    "bookshelf": {
+      "createdSuccessfully": "Étagère créée avec succès.",
+      "failedToCreate": "Échec de la création de l'étagère.",
+      "updatedSuccessfully": "Étagère mise à jour avec succès.",
+      "failedToUpdate": "Échec de la mise à jour de l'étagère.",
+      "deletedSuccessfully": "Étagère supprimée avec succès.",
+      "failedToDelete": "Échec de la suppression de l'étagère.",
+      "hasBooks": "L'étagère contient des livres. Veuillez retirer tous les livres de l'étagère avant de la supprimer."
+    },
+    "book": {
+      "updatedSuccessfully": "Livre mis à jour avec succès.",
+      "failedToUpdate": "Échec de la mise à jour du livre.",
+      "deletedSuccessfully": "Livre supprimé avec succès.",
+      "failedToDelete": "Échec de la suppression du livre."
+    }
   }
 }
