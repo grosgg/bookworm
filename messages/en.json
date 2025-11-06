@@ -57,7 +57,8 @@
       "bookCount": "{count} book(s)"
     },
     "settings": {
-      "title": "Settings"
+      "title": "Settings",
+      "language": "Language"
     }
   },
   "ui": {
