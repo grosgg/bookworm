@@ -15,13 +15,14 @@ export default async function AddBookPage(props: {
   const query = searchParams?.query;
   const searchType = searchParams?.searchType;
   const lang = searchParams?.lang;
+  const page = Number(searchParams?.page) || 1;
   return (
     <div>
       <h1 className="text-3xl font-bold">{t('title')}</h1>
       <div className="flex flex-col gap-8 mt-8">
         <BookSearchForm />
         {query && searchType && lang && (
-          <BookSearchResults searchType={searchType} query={query} lang={lang} />
+          <BookSearchResults searchType={searchType} query={query} lang={lang} page={page} />
         )}
       </div>
     </div>

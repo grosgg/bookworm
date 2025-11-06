@@ -26,10 +26,12 @@ export default function BookSearchForm() {
       params.set('searchType', searchType);
       params.set('query', query);
       params.set('lang', lang);
+      params.set('page', '1');
     } else {
       params.delete('searchType');
       params.delete('query');
       params.delete('lang');
+      params.delete('page');
     }
     replace(`${pathname}?${params.toString()}`);
   };

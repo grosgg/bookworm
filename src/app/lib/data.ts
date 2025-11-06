@@ -147,12 +147,14 @@ export async function getBookById(id: string) {
   }
 }
 
-export async function searchBooks(searchType: 'intitle' | 'isbn', query: string, lang: 'en' | 'fr' | 'ja') {
+export async function searchBooks(searchType: 'intitle' | 'isbn', query: string, lang: 'en' | 'fr' | 'ja', page: number) {
   try {
     const params = new URLSearchParams({
       q: `${searchType}:${query}`,
       printType: 'books',
       langRestrict: lang,
+      startIndex: ((page - 1) * 4).toString(),
+      maxResults: '4',
       key: process.env.GOOGLE_API_KEY!,
     });
     const result = await fetch(
@@ -162,11 +164,8 @@ export async function searchBooks(searchType: 'intitle' | 'isbn', query: string,
       }
     );
     const data = await result.json();
-    if (data.totalItems === 0) {
-      return [];
-    }
 
-    const volumes = data.items.map((item: { volumeInfo: VolumeInfoType }) => {
+    const volumes = data.items?.map((item: { volumeInfo: VolumeInfoType }) => {
       const isbn = item.volumeInfo.industryIdentifiers?.find((identifier: IndustryIdentifierType) => identifier.type === 'ISBN_13')?.identifier;
       return {
         title: item.volumeInfo.title,
@@ -180,9 +179,9 @@ export async function searchBooks(searchType: 'intitle' | 'isbn', query: string,
       };
     });
 
-    return volumes;
+    return { books: volumes, totalCount: data.totalItems };
   } catch (error) {
     console.error('Error:', error);
-    return [];
+    return { books: [], totalCount: 0 };
   }
 }
