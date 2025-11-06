@@ -136,6 +136,17 @@ export async function getBooksCountForCurrentUser(query: string) {
   }
 }
 
+export async function getReadBooksCountForCurrentUser() {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM book WHERE "userId" = $1 AND "status" = $2', [session.user.id, 'read']);
+    return result.rows[0].count;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch read count data.');
+  }
+}
+
 export async function getBookById(id: string) {
   try {
     const session = await requireSession();

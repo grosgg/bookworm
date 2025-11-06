@@ -73,6 +73,12 @@
       "allBooks": "All Books",
       "settings": "Settings"
     },
+    "readCountCard": {
+      "readCountDescription": "Books read"
+    },
+    "allCountCard": {
+      "allCountDescription": "Books in collection"
+    },
     "localeLinks": {
       "english": "English",
       "francais": "Français"

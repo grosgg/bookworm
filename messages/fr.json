@@ -74,6 +74,12 @@
       "allBooks": "Tous les livres",
       "settings": "Paramètres"
     },
+    "readCountCard": {
+      "readCountDescription": "Livres lus"
+    },
+    "allCountCard": {
+      "allCountDescription": "Livres dans la collection"
+    },
     "localeLinks": {
       "english": "English",
       "francais": "Français"
