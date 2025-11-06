@@ -147,6 +147,17 @@ export async function getBookById(id: string) {
   }
 }
 
+export async function isBookInCollection(isbn: string) {
+  try {
+    const session = await requireSession();
+    const result = await pool.query<{ count: number }>('SELECT COUNT(*) FROM book WHERE "userId" = $1 AND isbn = $2', [session.user.id, isbn]);
+    return result.rows[0].count > 0;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to check if book is in collection.');
+  }
+}
+
 export async function searchBooks(searchType: 'intitle' | 'isbn', query: string, lang: 'en' | 'fr' | 'ja', page: number) {
   try {
     const params = new URLSearchParams({

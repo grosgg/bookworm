@@ -2,9 +2,13 @@ import { BookType } from "@/app/lib/definitions";
 import AddToCollectionButton from "./add-to-collection-button";
 import { getTranslations } from 'next-intl/server';
 import LanguagePill from "./language-pill";
+import { isBookInCollection } from "@/app/lib/data";
 
 export default async function BookCard({ book }: { book: BookType }) {
   const t = await getTranslations('pages.bookDetail');
+
+  const isInCollection = book.isbn ? await isBookInCollection(book.isbn) : false;
+
   return (
     <div className="rounded-lg shadow-md bg-white p-6 border border-gray-200 hover:shadow-lg transition-shadow flex items-start">
       <div className="flex-1 pr-4">
@@ -21,8 +25,8 @@ export default async function BookCard({ book }: { book: BookType }) {
         <div className="flex items-center gap-2 my-2">
           <LanguagePill language={book.language} />
         </div>
-        <AddToCollectionButton book={book} />
 
+        <AddToCollectionButton book={book} isInCollection={isInCollection} />
       </div>
       {book.coverUrl && (
         <img

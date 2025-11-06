@@ -137,7 +137,8 @@
       "noBooksFound": "No books found"
     },
     "addToCollectionButton": {
-      "addToCollection": "Add to collection"
+      "addToCollection": "Add to collection",
+      "inCollection": "In the collection"
     },
     "bookshelfCard": {
       "edit": "Edit",
@@ -177,7 +178,9 @@
       "updatedSuccessfully": "Book updated successfully.",
       "failedToUpdate": "Failed to update book.",
       "deletedSuccessfully": "Book deleted successfully.",
-      "failedToDelete": "Failed to delete book."
+      "failedToDelete": "Failed to delete book.",
+      "addedSuccessfully": "Book added to collection successfully.",
+      "failedToAdd": "Failed to add book to collection."
     }
   }
 }

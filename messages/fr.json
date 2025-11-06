@@ -23,6 +23,7 @@
     "bookDetail": {
       "edit": "Modifier",
       "delete": "Supprimer",
+      "inCollection": "Dans la collection",
       "personalNotes": "Notes",
       "noNotesYet": "Aucune note pour le moment",
       "pages": "pages",
@@ -137,7 +138,8 @@
       "noBooksFound": "Aucun livre trouvé"
     },
     "addToCollectionButton": {
-      "addToCollection": "Ajouter à la collection"
+      "addToCollection": "Ajouter à la collection",
+      "inCollection": "Dans la collection"
     },
     "bookshelfCard": {
       "edit": "Modifier",
@@ -177,7 +179,9 @@
       "updatedSuccessfully": "Livre mis à jour avec succès.",
       "failedToUpdate": "Échec de la mise à jour du livre.",
       "deletedSuccessfully": "Livre supprimé avec succès.",
-      "failedToDelete": "Échec de la suppression du livre."
+      "failedToDelete": "Échec de la suppression du livre.",
+      "addedSuccessfully": "Livre ajouté à la collection avec succès.",
+      "failedToAdd": "Échec de l'ajout du livre à la collection."
     }
   }
 }

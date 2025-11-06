@@ -38,7 +38,7 @@ export default async function BookshelvesPage(props: {
         {bookshelves.map((bookshelf) => (
           <BookshelfCard key={bookshelf.id} bookshelf={bookshelf} />
         ))}
-        <DefaultBookshelfCard userId={userId} />
+        <DefaultBookshelfCard />
       </div>
       <Pagination page={page} totalPages={Math.ceil(totalBookshelves / 5)} />
     </div>

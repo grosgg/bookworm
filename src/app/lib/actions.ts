@@ -85,28 +85,33 @@ export async function deleteBookshelfAction(id: string) {
   }
 }
 
-export async function addBookToCollectionAction(formData: FormData) {
+export async function addBookToCollectionAction(_previousState: ActionStateType, formData: FormData) {
   const session = await requireSession();
+  const t = await getTranslations('actions.book');
 
-  await pool.query(
-    'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
-    [
-      uuidv4(),
-      session.user.id,
-      formData.get('bookshelfId'),
-      formData.get('title'),
-      formData.get('author'),
-      formData.get('isbn'),
-      formData.get('coverUrl'),
-      formData.get('pages'),
-      formData.get('year'),
-      formData.get('publisher'),
-      formData.get('language')
-    ]
-  );
+  try {
+    await pool.query(
+      'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+      [
+        uuidv4(),
+        session.user.id,
+        formData.get('bookshelfId'),
+        formData.get('title'),
+        formData.get('author'),
+        formData.get('isbn'),
+        formData.get('coverUrl'),
+        formData.get('pages'),
+        formData.get('year'),
+        formData.get('publisher'),
+        formData.get('language')
+      ]
+    );
 
-  revalidatePath('/bookshelves');
-  redirect('/bookshelves');
+    return { success: true, message: t('addedSuccessfully'), toast: true, redirect: '' };
+  } catch (error) {
+    console.error('Database Error:', error);
+    return { success: false, message: t('failedToAdd'), toast: true, redirect: '' };
+  }
 }
 
 export async function editBookAction(id: string, _previousState: ActionStateType, formData: FormData) {
