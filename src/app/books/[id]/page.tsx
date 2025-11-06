@@ -14,6 +14,7 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
   const t = await getTranslations('pages.bookDetail');
   const params = await props.params;
   const book: BookType | undefined = await getBookById(params.id);
+
   if (!book) { redirect('/books'); }
 
   return (

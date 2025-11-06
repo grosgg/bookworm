@@ -4,6 +4,8 @@ import { getTranslations } from 'next-intl/server';
 import MediaPill from "./media-pill";
 import StatusPill from "./status-pill";
 import LanguagePill from "./language-pill";
+import DeleteButton from "@/app/ui/books/delete-button";
+import DeleteLink from "./delete-link";
 
 export default async function BookCard({ book }: { book: BookType }) {
   const t = await getTranslations('pages.bookDetail');
@@ -29,6 +31,7 @@ export default async function BookCard({ book }: { book: BookType }) {
         </div>
         <div className="flex items-center gap-2">
           <Link href={`/books/${book.id}/edit`} className="text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer">{t('edit')}</Link>
+          <DeleteLink book={book} />
         </div>
       </div>
       {book.coverUrl && (

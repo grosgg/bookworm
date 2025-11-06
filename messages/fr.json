@@ -149,6 +149,7 @@
       "coverAlt": "Couverture de {title}"
     },
     "deleteBookButton": {
+      "delete": "Supprimer",
       "deleteConfirmationTitle": "Supprimer le livre",
       "deleteConfirmationMessage": "Êtes-vous sûr de vouloir supprimer {title}?"
     },

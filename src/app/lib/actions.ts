@@ -143,7 +143,7 @@ export async function deleteBookAction(id: string) {
   try {
     await pool.query('DELETE FROM book WHERE id = $1 AND "userId" = $2', [id, session.user.id]);
     revalidatePath(`/books/${id}`);
-    return { success: true, message: t('deletedSuccessfully'), toast: true, redirect: '/books' };
+    return { success: true, message: t('deletedSuccessfully'), toast: true, redirect: '' };
   } catch (error) {
     console.error('Database Error:', error);
     return { success: false, message: t('failedToDelete'), toast: true, redirect: '' };
