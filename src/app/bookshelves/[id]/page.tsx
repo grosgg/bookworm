@@ -26,7 +26,7 @@ export default async function BookshelfPage(props: { params: Promise<{ id: strin
     <>
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-3xl font-bold">{bookshelf.name}</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row items-center gap-2">
           <Link
             href={`/bookshelves/${bookshelf.id}/edit`}
             className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"

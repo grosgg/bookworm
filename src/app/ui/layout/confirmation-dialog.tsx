@@ -14,7 +14,7 @@ export default function ConfirmationDialog({ isOpen, title, message, onConfirm, 
 
   return (
     <div className="fixed inset-0 bg-gray-600/50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
+      <div className="bg-white p-6 m-4 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <p className="mb-6">{message}</p>
         <div className="flex justify-end space-x-4">

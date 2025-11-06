@@ -19,9 +19,12 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
 
   return (
     <>
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-3xl font-bold">{book.title}</h1>
-        <div className="flex items-center gap-2">
+      <div className="flex flex-row items-start justify-between gap-2">
+        <div>
+          <h1 className="text-3xl font-bold">{book.title}</h1>
+          <p className="text-lg font-medium">{book.author}</p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-2">
           <BackLink bookshelfId={book.bookshelfId} />
           <Link
             href={`/books/${book.id}/edit`}
@@ -30,11 +33,10 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
           <DeleteButton book={book} />
         </div>
       </div>
-      <div>
-        <div className="flex flex-col gap-10">
-          <div className="flex items-start gap-20 lg:w-2/3">
-            <div className="flex flex-col">
-              <p className="text-lg font-medium">{book.author}</p>
+      <div className="flex flex-col md:flex-row md:justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col md:flex-row md:w-full">
+            <div className="flex-1 pr-4">
               <p className="text-sm text-gray-500">{book.year}</p>
               <p className="text-sm text-gray-500">{book.publisher}</p>
               {!!book.pages && (
@@ -43,20 +45,20 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
               {book.isbn && (
                 <p className="text-sm text-gray-500">{t('isbn')} {book.isbn}</p>
               )}
-              <div className="flex items-center gap-2 my-2">
-                <LanguagePill language={book.language} />
-                <MediaPill media={book.media} />
-                <StatusPill status={book.status} />
-              </div>
             </div>
-            <div>
-              {book.coverUrl && (
-                <img
-                  src={book.coverUrl}
-                  alt={book.title}
-                  className="w-24 h-36 object-cover rounded ml-4 shadow"
-                />
-              )}
+            {book.coverUrl && (
+              <img
+                src={book.coverUrl}
+                alt={book.title}
+                className="w-32 h-48 object-cover rounded my-2 shadow md:hidden"
+              />
+            )}
+          </div>
+          <div>
+            <div className="flex items-center gap-2 my-2">
+              <LanguagePill language={book.language} />
+              <MediaPill media={book.media} />
+              <StatusPill status={book.status} />
             </div>
           </div>
           <div>
@@ -69,6 +71,13 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
             )}
           </div>
         </div>
+        {book.coverUrl && (
+          <img
+            src={book.coverUrl}
+            alt={book.title}
+            className="w-32 h-48 object-cover rounded my-2 shadow hidden md:block"
+          />
+        )}
       </div>
     </>
   );
