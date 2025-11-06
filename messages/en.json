@@ -9,7 +9,9 @@
       "back": "Back"
     },
     "home": {
-      "title": "Home"
+      "title": "Home",
+      "currentBooks": "Currently Reading",
+      "noCurrentBooks": "No books currently being read"
     },
     "books": {
       "title": "Books",

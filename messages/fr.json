@@ -9,7 +9,9 @@
       "back": "Retour"
     },
     "home": {
-      "title": "Accueil"
+      "title": "Accueil",
+      "currentBooks": "En cours de lecture",
+      "noCurrentBooks": "Aucun livre en cours de lecture"
     },
     "books": {
       "title": "Livres",

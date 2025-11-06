@@ -125,6 +125,17 @@ export async function getBooksForCurrentUser(query: string, page: number) {
   }
 }
 
+export async function getReadingBooksForCurrentUser() {
+  const session = await requireSession();
+  try {
+    const result = await pool.query<BookType>('SELECT * FROM book WHERE "userId" = $1 AND "status" = $2 ORDER BY "updatedAt" DESC', [session.user.id, 'reading']);
+    return result.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch reading books data.');
+  }
+}
+
 export async function getBooksCountForCurrentUser(query: string) {
   const session = await requireSession();
   try {
