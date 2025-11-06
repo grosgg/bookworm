@@ -6,7 +6,9 @@
     "about": {
       "welcome": "Salut!",
       "content": "Bookworm est une bibliothèque numérique. C'est un endroit pour stocker vos livres et suivre votre progression de lecture. La version actuelle inclut les fonctionnalités pour gérer votre propre collection de livres. Dans une future version, j'ajouterai la connexion avec des amis et les échanges de livres.",
-      "back": "Retour"
+      "back": "Retour",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation"
     },
     "home": {
       "title": "Accueil",

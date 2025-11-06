@@ -29,6 +29,14 @@ export default async function AboutPage() {
           <p className={`text-lg text-gray-800 antialiased`}>
             {t('content')}
           </p>
+          <div className="flex flex-col gap-2">
+            <Link href="/about/privacy" className="text-yellow-500 hover:text-yellow-600 cursor-pointer">
+              {t('privacy')}
+            </Link>
+            <Link href="/about/terms" className="text-yellow-500 hover:text-yellow-600 cursor-pointer">
+              {t('terms')}
+            </Link>
+          </div>
           <Link href="/" className="text-yellow-500 hover:text-yellow-600">
             {t('back')}
           </Link>

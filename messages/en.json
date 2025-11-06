@@ -6,7 +6,9 @@
     "about": {
       "welcome": "Hi there!",
       "content": "Bookworm is a digital bookshelf. It is a place to store your books and to track your reading progress. The current version includes the features to manage your own collection of books. In a future version, I will add friend connections and book exchange capabilities.",
-      "back": "Back"
+      "back": "Back",
+      "privacy": "Privacy Policy",
+      "terms": "Terms and Conditions"
     },
     "home": {
       "title": "Home",
