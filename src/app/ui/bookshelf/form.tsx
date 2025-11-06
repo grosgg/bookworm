@@ -35,7 +35,7 @@ export default function BookshelfForm({ action, bookshelf }: { action: (_previou
         <button type="submit" className="flex items-center gap-5 rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base">
           {t('save')}
         </button>
-        <Link href="/bookshelves" className="text-sm text-gray-500">{t('cancel')}</Link>
+        <Link href={`/bookshelves/${bookshelf?.id}`} className="text-sm text-gray-500 hover:text-gray-600 cursor-pointer">{t('cancel')}</Link>
       </div>
     </form>
   );

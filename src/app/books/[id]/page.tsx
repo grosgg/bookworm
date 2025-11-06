@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import DeleteButton from "@/app/ui/books/delete-button";
+import BackLink from "@/app/ui/books/back-link";
 
 export default async function BookPage(props: { params: Promise<{ id: string }> }) {
   const t = await getTranslations('pages.bookDetail');
@@ -20,6 +21,7 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-3xl font-bold">{book.title}</h1>
         <div className="flex items-center gap-2">
+          <BackLink bookshelfId={book.bookshelfId} />
           <Link
             href={`/books/${book.id}/edit`}
             className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"

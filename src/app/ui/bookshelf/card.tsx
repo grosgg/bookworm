@@ -19,8 +19,7 @@ export default async function BookshelfCard({ bookshelf }: { bookshelf: Bookshel
       <VisibilityPill visibility={bookshelf.visibility} />
       <p className="text-md font-medium">{t('bookCount', { count: booksCount })}</p>
       <div className="flex items-center gap-2">
-        <Link href={`/bookshelves/${bookshelf.id}/edit`} className="text-sm text-yellow-500">{t('edit')}</Link>
-        {/* <Link href={`/bookshelves/${bookshelf.id}/delete`} className="text-sm text-red-500">Delete</Link> */}
+        <Link href={`/bookshelves/${bookshelf.id}/edit`} className="text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer">{t('edit')}</Link>
       </div>
     </div>
   );

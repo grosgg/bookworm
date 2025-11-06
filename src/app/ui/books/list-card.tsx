@@ -28,7 +28,7 @@ export default async function BookCard({ book }: { book: BookType }) {
           <StatusPill status={book.status} />
         </div>
         <div className="flex items-center gap-2">
-          <Link href={`/books/${book.id}/edit`} className="text-sm text-yellow-500">{t('edit')}</Link>
+          <Link href={`/books/${book.id}/edit`} className="text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer">{t('edit')}</Link>
         </div>
       </div>
       {book.coverUrl && (

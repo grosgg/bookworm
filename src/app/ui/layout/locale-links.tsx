@@ -7,7 +7,7 @@ export default function LocaleLinks() {
   return (
     <>
       <a
-        className="text-sm text-yellow-400 hover:underline cursor-pointer"
+        className="text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer"
         onClick={async () => {
           await setLocaleAction('en');
           window.location.reload();
@@ -17,7 +17,7 @@ export default function LocaleLinks() {
       </a>
       <span className="text-sm text-gray-400">|</span>
       <a
-        className="text-sm text-yellow-400 hover:underline cursor-pointer"
+        className="text-sm text-yellow-500 hover:text-yellow-600 cursor-pointer"
         onClick={async () => {
           await setLocaleAction('fr');
           window.location.reload();

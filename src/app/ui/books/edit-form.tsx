@@ -111,7 +111,7 @@ export default function BookForm({ action, book, bookshelves }: { action: (_prev
         <button type="submit" className="flex items-center gap-5 rounded-lg bg-yellow-200 px-6 py-3 text-sm font-medium transition-colors hover:bg-yellow-100 md:text-base">
           {t('save')}
         </button>
-        <Link href="/books" className="text-sm text-gray-500">{t('cancel')}</Link>
+        <Link href={`/books/${book?.id}`} className="text-sm text-gray-500 hover:text-gray-600 cursor-pointer">{t('cancel')}</Link>
       </div>
     </form>
   );
