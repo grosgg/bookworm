@@ -21,6 +21,11 @@ export const up = (pgm: MigrationBuilder): void => {
     createdAt: { type: 'timestamp with time zone', notNull: true, default: pgm.func('now()') },
     updatedAt: { type: 'timestamp with time zone', notNull: true, default: pgm.func('now()') },
   });
+  pgm.createIndex('book', 'userId');
+  pgm.createIndex('book', 'bookshelfId');
+  pgm.createIndex('book', 'title');
+  pgm.createIndex('book', 'author');
+  pgm.createIndex('book', 'status');
 }
 
 export const down = (pgm: MigrationBuilder): void => {
