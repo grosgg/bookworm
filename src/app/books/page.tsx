@@ -17,7 +17,6 @@ export default async function BooksPage(props: {
   const page = Number(searchParams?.page) || 1;
   const books = await getBooksForCurrentUser(query, page);
   const totalBooks = await getBooksCountForCurrentUser(query);
-  console.log(totalBooks);
 
   return (
     <div className="flex flex-col gap-4">
