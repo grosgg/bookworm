@@ -33,7 +33,7 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
           <DeleteButton book={book} />
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between">
+      <div className="flex flex-col md:flex-row md:justify-between gap-2">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col md:flex-row md:w-full">
             <div className="flex-1 pr-4">
@@ -54,6 +54,7 @@ export default async function BookPage(props: { params: Promise<{ id: string }> 
               />
             )}
           </div>
+          <p className="text-sm text-gray-500">{book.description}</p>
           <div>
             <div className="flex items-center gap-2 my-2">
               <LanguagePill language={book.language} />

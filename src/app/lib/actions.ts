@@ -91,7 +91,7 @@ export async function addBookToCollectionAction(_previousState: ActionStateType,
 
   try {
     await pool.query(
-      'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+      'INSERT INTO book ("id", "userId", "bookshelfId", title, author, isbn, "coverUrl", "pages", "year", "publisher", "description", "language") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
       [
         uuidv4(),
         session.user.id,
@@ -103,6 +103,7 @@ export async function addBookToCollectionAction(_previousState: ActionStateType,
         formData.get('pages'),
         formData.get('year'),
         formData.get('publisher'),
+        formData.get('description'),
         formData.get('language')
       ]
     );

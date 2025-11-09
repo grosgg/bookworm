@@ -14,6 +14,7 @@ export const up = (pgm: MigrationBuilder): void => {
     pages: { type: 'integer', notNull: false },
     year: { type: 'integer', notNull: false },
     publisher: { type: 'varchar(255)', notNull: false },
+    description: { type: 'text', notNull: false },
     language: { type: 'varchar(255)', notNull: false },
     media: { type: 'varchar(255)', notNull: true, default: 'physical' },
     status: { type: 'varchar(255)', notNull: true, default: 'not_read' },

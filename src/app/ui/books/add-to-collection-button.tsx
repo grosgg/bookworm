@@ -26,6 +26,7 @@ export default function AddToCollectionButton({ book, isInCollection }: { book: 
       <input type="hidden" name="pages" value={book.pages} />
       <input type="hidden" name="year" value={book.year} />
       <input type="hidden" name="publisher" value={book.publisher} />
+      <input type="hidden" name="description" value={book.description} />
       <input type="hidden" name="language" value={book.language} />
 
       <button type="submit" className="mt-2 bg-yellow-200 hover:bg-yellow-100 text-black flex items-center gap-2 rounded px-4 py-2 font-medium">

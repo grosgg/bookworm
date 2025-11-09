@@ -199,7 +199,7 @@ export async function searchBooks(searchType: 'intitle' | 'isbn', query: string,
     const data = await result.json();
 
     const volumes = data.items?.map((item: { volumeInfo: VolumeInfoType }) => {
-      const isbn = item.volumeInfo.industryIdentifiers?.find((identifier: IndustryIdentifierType) => identifier.type === 'ISBN_13')?.identifier;
+      const isbn = item.volumeInfo.industryIdentifiers?.find((identifier: IndustryIdentifierType) => identifier.type === 'ISBN_13' || identifier.type === 'ISBN_10')?.identifier;
       return {
         title: item.volumeInfo.title,
         author: item.volumeInfo.authors?.length > 0 ? item.volumeInfo.authors[0] : undefined,
@@ -207,6 +207,7 @@ export async function searchBooks(searchType: 'intitle' | 'isbn', query: string,
         coverUrl: item.volumeInfo.imageLinks?.thumbnail,
         year: item.volumeInfo.publishedDate?.split('-')[0],
         publisher: item.volumeInfo.publisher,
+        description: item.volumeInfo.description,
         pages: item.volumeInfo.pageCount,
         language: item.volumeInfo.language,
       };

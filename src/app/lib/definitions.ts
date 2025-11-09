@@ -31,6 +31,7 @@ export const BookSchema = z.object({
   pages: z.number().optional(),
   year: z.number().optional(),
   publisher: z.string().optional(),
+  description: z.string().optional(),
   language: z.string().optional(),
   coverUrl: z.url().optional(),
   media: z.enum(['physical', 'digital']),
@@ -51,6 +52,7 @@ export const VolumeInfoSchema = z.object({
   imageLinks: z.object({ thumbnail: z.string().optional() }),
   publishedDate: z.string().optional(),
   publisher: z.string().optional(),
+  description: z.string().optional(),
   pageCount: z.number().optional(),
   language: z.string().optional(),
 });
