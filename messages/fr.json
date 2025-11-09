@@ -36,7 +36,6 @@
     },
     "bookshelves": {
       "title": "Étagères",
-      "newBookshelf": "Nouvelle étagère",
       "bookCount": "{count} livre(s)",
       "bookCount_one": "{count} livre",
       "bookCount_other": "{count} livres"

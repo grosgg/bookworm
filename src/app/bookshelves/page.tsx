@@ -31,7 +31,7 @@ export default async function BookshelvesPage(props: {
           href="/bookshelves/create"
           className="flex items-center gap-2 px-4 py-2 bg-yellow-200 rounded-md hover:bg-yellow-100 transition"
         >
-          {t('newBookshelf')} <FolderPlusIcon className="w-6" />
+          <FolderPlusIcon className="w-6" />
         </Link>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

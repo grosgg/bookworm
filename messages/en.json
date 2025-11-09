@@ -35,7 +35,6 @@
     },
     "bookshelves": {
       "title": "Bookshelves",
-      "newBookshelf": "New Bookshelf",
       "bookCount": "{count} book(s)",
       "bookCount_one": "{count} book",
       "bookCount_other": "{count} books"
