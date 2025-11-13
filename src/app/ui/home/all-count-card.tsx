@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { getBooksCountForCurrentUser } from "@/app/lib/data";
+import { getBooksCountForCurrentUser } from "@/app/lib/data/books";
 
 export default async function AllCountCard() {
   const t = await getTranslations('ui.allCountCard');

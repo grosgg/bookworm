@@ -1,4 +1,4 @@
-import { getBookById } from "@/app/lib/data";
+import { getBookById } from "@/app/lib/data/books";
 import { BookType } from "@/app/lib/definitions";
 import LanguagePill from "@/app/ui/books/language-pill";
 import MediaPill from "@/app/ui/books/media-pill";

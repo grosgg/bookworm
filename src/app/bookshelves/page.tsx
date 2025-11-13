@@ -1,5 +1,5 @@
 import { BookshelfType } from '@/app/lib/definitions';
-import { getBookshelvesByUserId, getBookshelvesCountForCurrentUser } from '@/app/lib/data';
+import { getBookshelvesByUserId, getBookshelvesCountForCurrentUser } from '@/app/lib/data/bookshelves';
 import { requireSession } from '@/app/lib/auth';
 import { FolderPlusIcon } from '@heroicons/react/24/outline';
 import BookshelfCard from '@/app/ui/bookshelf/card';

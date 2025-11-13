@@ -1,4 +1,4 @@
-import { getBooksCountForCurrentUser, getBooksForCurrentUser } from "@/app/lib/data";
+import { getBooksCountForCurrentUser, getBooksForCurrentUser } from "@/app/lib/data/books";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/list-card";
 import { getTranslations } from 'next-intl/server';

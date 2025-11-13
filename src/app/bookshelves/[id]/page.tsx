@@ -1,4 +1,5 @@
-import { getBooksByBookshelfId, getBooksCountForBookshelf, getBookshelfById } from "@/app/lib/data";
+import { getBooksByBookshelfId, getBooksCountForBookshelf } from "@/app/lib/data/books";
+import { getBookshelfById } from "@/app/lib/data/bookshelves";
 import { BookshelfType, BookType } from "@/app/lib/definitions";
 import DeleteButton from "@/app/ui/bookshelf/delete-button";
 import BookCard from "@/app/ui/books/list-card";

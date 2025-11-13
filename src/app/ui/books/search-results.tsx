@@ -1,4 +1,4 @@
-import { searchBooks } from "@/app/lib/data";
+import { searchBooks } from "@/app/lib/data/books";
 import { BookType } from "@/app/lib/definitions";
 import BookCard from "@/app/ui/books/search-card";
 import { getTranslations } from 'next-intl/server';

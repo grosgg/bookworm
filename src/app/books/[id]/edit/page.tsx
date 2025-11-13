@@ -1,4 +1,5 @@
-import { getBookById, getAllBookshelvesByUserId } from "@/app/lib/data";
+import { getBookById } from "@/app/lib/data/books";
+import { getAllBookshelvesByUserId } from "@/app/lib/data/bookshelves";
 import { ActionStateType, BookshelfType, BookType } from "@/app/lib/definitions";
 import { getTranslations } from "next-intl/server";
 import { editBookAction } from "@/app/lib/actions/books";

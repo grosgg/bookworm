@@ -2,7 +2,7 @@ import { BookType } from "@/app/lib/definitions";
 import AddToCollectionButton from "./add-to-collection-button";
 import { getTranslations } from 'next-intl/server';
 import LanguagePill from "./language-pill";
-import { isBookInCollection } from "@/app/lib/data";
+import { isBookInCollection } from "@/app/lib/data/books";
 
 export default async function BookCard({ book }: { book: BookType }) {
   const t = await getTranslations('pages.bookDetail');

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getBooksCountForBookshelf } from "@/app/lib/data";
+import { getBooksCountForBookshelf } from "@/app/lib/data/books";
 import { BookshelfType } from "@/app/lib/definitions";
 import { getTranslations } from 'next-intl/server';
 import VisibilityPill from "@/app/ui/books/visibility-pill";

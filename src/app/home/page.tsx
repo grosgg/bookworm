@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import BookReadCountCard from '@/app/ui/home/read-count-card';
 import BookAllCountCard from '@/app/ui/home/all-count-card';
-import BookCard from '../ui/books/list-card';
-import { getReadingBooksForCurrentUser } from '../lib/data';
-import { BookType } from '../lib/definitions';
+import BookCard from '@/app/ui/books/list-card';
+import { getReadingBooksForCurrentUser } from '@/app/lib/data/books';
+import { BookType } from '@/app/lib/definitions';
 
 export default async function Page() {
   const t = await getTranslations('pages.home');

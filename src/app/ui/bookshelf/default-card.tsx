@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllBooksFromDefaultBookshelf } from "@/app/lib/data";
+import { getAllBooksFromDefaultBookshelf } from "@/app/lib/data/books";
 import { getTranslations } from 'next-intl/server';
 import VisibilityPill from "../books/visibility-pill";
 
