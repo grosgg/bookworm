@@ -7,8 +7,8 @@
     "build": "npm run migrate:up && next build",
     "start": "next start",
     "lint": "eslint",
-    "migrate:up": "node-pg-migrate -j ts --databaseUrl $DATABASE_URL up",
-    "migrate:down": "node-pg-migrate -j ts --databaseUrl $DATABASE_URL down"
+    "migrate:up": "node-pg-migrate -j ts up",
+    "migrate:down": "node-pg-migrate -j ts down"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

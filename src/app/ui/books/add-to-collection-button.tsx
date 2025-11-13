@@ -1,6 +1,6 @@
 'use client';
 import { BookType } from "@/app/lib/definitions";
-import { addBookToCollectionAction } from "@/app/lib/actions";
+import { addBookToCollectionAction } from "@/app/lib/actions/books";
 import { useTranslations } from "next-intl";
 import { useActionState, useEffect } from "react";
 import { handleActionResponse } from "@/app/lib/actionResponseHandler";

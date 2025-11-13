@@ -1,7 +1,7 @@
 import { getBookById, getAllBookshelvesByUserId } from "@/app/lib/data";
 import { ActionStateType, BookshelfType, BookType } from "@/app/lib/definitions";
 import { getTranslations } from "next-intl/server";
-import { editBookAction } from "@/app/lib/actions";
+import { editBookAction } from "@/app/lib/actions/books";
 import BookForm from "@/app/ui/books/edit-form";
 import LanguagePill from "@/app/ui/books/language-pill";
 

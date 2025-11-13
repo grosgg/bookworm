@@ -1,4 +1,4 @@
-import { createBookshelfAction } from '@/app/lib/actions';
+import { createBookshelfAction } from '@/app/lib/actions/bookshelves';
 import { getTranslations } from 'next-intl/server';
 import BookshelfForm from '@/app/ui/bookshelf/form';
 

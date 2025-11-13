@@ -1,6 +1,6 @@
 import { getBookshelfById } from "@/app/lib/data";
 import { ActionStateType, BookshelfType } from "@/app/lib/definitions";
-import { editBookshelfAction } from "@/app/lib/actions";
+import { editBookshelfAction } from "@/app/lib/actions/bookshelves";
 import { getTranslations } from 'next-intl/server';
 import BookshelfForm from "@/app/ui/bookshelf/form";
 

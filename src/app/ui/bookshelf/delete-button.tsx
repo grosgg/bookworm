@@ -1,6 +1,6 @@
 'use client';
 import { BookshelfType } from "@/app/lib/definitions";
-import { deleteBookshelfAction } from "@/app/lib/actions";
+import { deleteBookshelfAction } from "@/app/lib/actions/bookshelves";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ConfirmationDialog from "../layout/confirmation-dialog";

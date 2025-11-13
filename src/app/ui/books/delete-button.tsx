@@ -1,6 +1,6 @@
 'use client';
 import { BookType } from "@/app/lib/definitions";
-import { deleteBookAction } from "@/app/lib/actions";
+import { deleteBookAction } from "@/app/lib/actions/books";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import ConfirmationDialog from "../layout/confirmation-dialog";
