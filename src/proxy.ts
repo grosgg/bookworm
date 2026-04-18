@@ -10,7 +10,6 @@ export function proxy(request: NextRequest) {
 
   after(async () => {
     const responseTime = (Date.now() - startTime) / 1000;
-    console.log('responseTime', responseTime);
     try {
       fetch(`https://opsbloc.com/logs/${APP_ID}`, {
         method: 'POST',
@@ -23,7 +22,7 @@ export function proxy(request: NextRequest) {
           request_method: request.method,
           request_url: request.nextUrl.pathname,
           status: response.status,
-          client_ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+          client_ip: request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for'),
           user_agent: request.headers.get('user-agent'),
           request_time: responseTime,
           referer: request.headers.get('referer'),
@@ -32,7 +31,7 @@ export function proxy(request: NextRequest) {
         signal: AbortSignal.timeout(5000)
       });
     } catch (error) {
-      console.error('[tracking] failed:', error)
+      console.error('[OpsBloc Tracking] Error:', error)
     }
   });
 
