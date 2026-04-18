@@ -20,13 +20,14 @@ export function proxy(request: NextRequest) {
         body: JSON.stringify({
           timestamp: new Date().toISOString(),
           request_method: request.method,
-          request_url: request.nextUrl.pathname,
+          request_url: request.nextUrl.pathname.replace(/\/[a-z0-9]([a-z0-9-]*[0-9][a-z0-9-]*)/gi, '/[id]'),
           status: response.status,
-          client_ip: request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for'),
+          client_ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
           user_agent: request.headers.get('user-agent'),
           request_time: responseTime,
           referer: request.headers.get('referer'),
           request_id: crypto.randomUUID()
+
         }),
         signal: AbortSignal.timeout(5000)
       });
